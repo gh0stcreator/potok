@@ -1,5 +1,5 @@
 /**
- * πоток — Design Tokens v2.0
+ * πоток — Design Tokens v3.0
  *
  * Structure:
  *   - Primitive scale  (raw values, never use directly in components)
@@ -7,39 +7,41 @@
  *   - Typography / spacing / motion / radius / z-index
  *
  * Themes: dark (default) + light via [data-theme="light"]
- * Source: Figma rYGGvsw5L78w5B6osxk9t9
+ * Source: Figma rYGGvsw5L78w5B6osxk9t9 + UI reference sync v3
  */
 
 
 /* ═══════════════════════════════════════════
    PRIMITIVE SCALE
-   6 grays + brand + status. Do not reference
-   in components — use semantic tokens below.
+   Do not reference in components — use semantic tokens below.
 ═══════════════════════════════════════════ */
 
 :root {
 
-  /* Gray scale — from Figma */
-  --_gray-0: #0B0B0E;   /* near-black */
-  --_gray-1: #171719;
-  --_gray-2: #4C4C50;
-  --_gray-3: #707076;
-  --_gray-4: #BFBFC1;
-  --_gray-5: #FBFBFB;   /* near-white */
+  /* Gray scale — neutral, no tint */
+  --_gray-0: #0A0A0A;   /* near-black */
+  --_gray-1: #171717;
+  --_gray-2: #262626;
+  --_gray-3: #666666;
+  --_gray-4: #A0A0A0;
+  --_gray-5: #FAFAFA;   /* near-white */
 
   /* Brand primitives */
-  --_blue:       #20208B;
-  --_blue-light: #2929B8;
-  --_blue-dim:   #181870;
+  --_blue:         #20208B;   /* brand identity */
+  --_blue-light:   #2929B8;
+  --_blue-dim:     #181870;
+  --_blue-action:  #447DF7;   /* interactive — links, buttons, focus rings */
+  --_indigo:       #6466E9;   /* labels, tags, badges */
+
+  /* Accent (energy, CTAs) */
   --_orange:     #FA683B;
   --_orange-lt:  #FB7D55;
   --_orange-dim: #E5522B;
 
   /* Status primitives */
-  --_green:  #5FC62F;
-  --_amber:  #FBBF48;
-  --_red:    #E84064;
-  --_blue-i: #3B82F6;   /* info — distinct from brand blue */
+  --_green:  #66DC7E;   /* success */
+  --_amber:  #DAB33C;   /* warning */
+  --_red:    #E64341;   /* error */
 
 }
 
@@ -52,23 +54,23 @@
 [data-theme="dark"] {
 
   /* ── Surfaces (4 levels, darkest → most elevated) ── */
-  --surface-page:    var(--_gray-0);   /* page canvas */
-  --surface-raised:  var(--_gray-1);      /* sidebar, header, nav */
-  --surface-card:    #323235;          /* cards, panels, containers */
-  --surface-overlay: var(--_gray-2);   /* modals, popovers, menus */
+  --surface-page:    var(--_gray-0);   /* #0A0A0A — page canvas */
+  --surface-raised:  var(--_gray-1);   /* #171717 — sidebar, nav, panels */
+  --surface-card:    #1C212E;          /* navy tint — cards, rows, containers */
+  --surface-overlay: var(--_gray-2);   /* #262626 — modals, popovers, menus */
 
   /* ── Foreground (3 levels) ── */
-  --fg-default: var(--_gray-5);   /* primary text, icons */
-  --fg-muted:   var(--_gray-4);   /* labels, secondary text */
-  --fg-subtle:  var(--_gray-3);   /* placeholders, disabled */
+  --fg-default: var(--_gray-5);   /* #FAFAFA — primary text, icons */
+  --fg-muted:   var(--_gray-4);   /* #A0A0A0 — labels, secondary text */
+  --fg-subtle:  var(--_gray-3);   /* #666666 — placeholders, disabled */
 
-  /* ── Border (1 value, derived via opacity) ── */
-  --border:       rgba(169, 172, 179, 0.15);
-  --border-focus: rgba(169, 172, 179, 0.35);
+  /* ── Border ── */
+  --border:       rgba(255, 255, 255, 0.08);
+  --border-focus: rgba(255, 255, 255, 0.20);
 
   /* ── Interactive hover / selection ── */
-  --bg-hover:    rgba(169, 172, 179, 0.06);
-  --bg-selected: rgba(32, 32, 139, 0.22);
+  --bg-hover:    rgba(255, 255, 255, 0.04);
+  --bg-selected: rgba(68, 125, 247, 0.16);   /* action blue tint */
 
 }
 
@@ -80,23 +82,23 @@
 [data-theme="light"] {
 
   /* ── Surfaces ── */
-  --surface-page:    var(--_gray-5);   /* #FBFBFB */
-  --surface-raised:  #F0F1F2;
-  --surface-card:    #E4E5E7;          /* derived: lighter than gray-2 */
-  --surface-overlay: #D5D6D9;          /* derived */
+  --surface-page:    #FFFFFF;
+  --surface-raised:  #F5F5F5;
+  --surface-card:    #EBEBEB;
+  --surface-overlay: #DEDEDE;
 
   /* ── Foreground ── */
-  --fg-default: var(--_gray-0);   /* #0B0B0E — inverted from dark */
-  --fg-muted:   var(--_gray-2);   /* #4C4C50 */
-  --fg-subtle:  var(--_gray-3);   /* #707076 */
+  --fg-default: var(--_gray-0);   /* #0A0A0A — inverted from dark */
+  --fg-muted:   #555555;
+  --fg-subtle:  #999999;
 
   /* ── Border ── */
-  --border:       rgba(11, 11, 14, 0.12);
-  --border-focus: rgba(11, 11, 14, 0.30);
+  --border:       rgba(0, 0, 0, 0.09);
+  --border-focus: rgba(0, 0, 0, 0.22);
 
   /* ── Interactive ── */
-  --bg-hover:    rgba(11, 11, 14, 0.04);
-  --bg-selected: rgba(32, 32, 139, 0.10);
+  --bg-hover:    rgba(0, 0, 0, 0.04);
+  --bg-selected: rgba(68, 125, 247, 0.10);
 
 }
 
@@ -108,43 +110,53 @@
 
 :root {
 
-  /* Brand */
-  --brand:       var(--_blue);        /* #20208B — identity, primary actions */
-  --brand-hover: var(--_blue-light);  /* #2929B8 */
-  --brand-dim:   var(--_blue-dim);    /* #181870 */
-  --brand-glow:  rgba(32, 32, 139, 0.22);
+  /* Brand identity */
+  --brand:       var(--_blue);         /* #20208B — logo, identity */
+  --brand-hover: var(--_blue-light);   /* #2929B8 */
+  --brand-dim:   var(--_blue-dim);     /* #181870 */
+  --brand-glow:  rgba(32, 32, 139, 0.20);
 
-  --accent:       var(--_orange);     /* #FA683B — CTA, critical data points */
-  --accent-hover: var(--_orange-lt);  /* #FB7D55 */
-  --accent-dim:   var(--_orange-dim); /* #E5522B */
+  /* Action blue — interactive elements (links, buttons, focus, selected) */
+  --action:       var(--_blue-action); /* #447DF7 */
+  --action-hover: #5B8FF8;
+  --action-dim:   #2D67E8;
+  --action-glow:  rgba(68, 125, 247, 0.22);
+
+  /* Accent orange — energy, CTAs, important data points */
+  --accent:       var(--_orange);      /* #FA683B */
+  --accent-hover: var(--_orange-lt);
+  --accent-dim:   var(--_orange-dim);
   --accent-glow:  rgba(250, 104, 59, 0.20);
 
+  /* Label / tag color */
+  --label-indigo: var(--_indigo);      /* #6466E9 — for tags, labels, categories */
+
   /* Status */
-  --color-success:        var(--_green);
-  --color-success-bg:     rgba(95, 198, 47, 0.12);
-  --color-success-border: rgba(95, 198, 47, 0.28);
+  --color-success:        var(--_green);               /* #66DC7E */
+  --color-success-bg:     rgba(102, 220, 126, 0.12);
+  --color-success-border: rgba(102, 220, 126, 0.28);
 
-  --color-warning:        var(--_amber);
-  --color-warning-bg:     rgba(251, 191, 72, 0.12);
-  --color-warning-border: rgba(251, 191, 72, 0.28);
+  --color-warning:        var(--_amber);               /* #DAB33C */
+  --color-warning-bg:     rgba(218, 179, 60, 0.12);
+  --color-warning-border: rgba(218, 179, 60, 0.28);
 
-  --color-error:          var(--_red);
-  --color-error-bg:       rgba(232, 64, 100, 0.12);
-  --color-error-border:   rgba(232, 64, 100, 0.28);
+  --color-error:          var(--_red);                 /* #E64341 */
+  --color-error-bg:       rgba(230, 67, 65, 0.12);
+  --color-error-border:   rgba(230, 67, 65, 0.28);
 
-  --color-info:           var(--_blue-i);
-  --color-info-bg:        rgba(59, 130, 246, 0.12);
-  --color-info-border:    rgba(59, 130, 246, 0.28);
+  --color-info:           var(--_blue-action);         /* #447DF7 */
+  --color-info-bg:        rgba(68, 125, 247, 0.12);
+  --color-info-border:    rgba(68, 125, 247, 0.28);
 
   /* Data visualization */
-  --data-gain:     var(--_green);    /* money in, positive delta */
-  --data-loss:     var(--_red);      /* money out, churn, drop */
-  --data-neutral:  var(--_gray-4);   /* baseline, no direction */
-  --data-primary:  var(--_blue-light);
-  --data-compare:  var(--_orange);
+  --data-gain:     var(--_green);       /* money in, positive delta */
+  --data-loss:     var(--_red);         /* money out, churn, drop */
+  --data-neutral:  var(--_gray-4);      /* baseline, no direction */
+  --data-primary:  var(--_blue-action); /* main metric line */
+  --data-compare:  var(--_orange);      /* comparison line */
 
   /* Flow health gradient */
-  --flow-bad:     #C4304F;
+  --flow-bad:     var(--_red);
   --flow-warn:    var(--_amber);
   --flow-neutral: var(--_gray-3);
   --flow-good:    var(--_green);
@@ -181,7 +193,7 @@
 
   /* Tracking */
   --tracking-tight: -0.02em;
-  --tracking-caps:   0.07em;   /* for ALL-CAPS labels */
+  --tracking-caps:   0.07em;
 
 
   /* ─── Spacing (4px grid) ─── */
@@ -207,10 +219,10 @@
 
   /* ─── Shadows ─── */
 
-  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.35);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
-  --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.55);
-  --shadow-brand: 0 0 0 3px var(--brand-glow);
+  --shadow-sm:     0 1px 4px rgba(0, 0, 0, 0.40);
+  --shadow-md:     0 4px 14px rgba(0, 0, 0, 0.50);
+  --shadow-lg:     0 8px 28px rgba(0, 0, 0, 0.60);
+  --shadow-action: 0 0 0 3px var(--action-glow);
   --shadow-accent: 0 0 0 3px var(--accent-glow);
 
 
