@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>πоток — Design System Preview</title>
+  <title>πоток — Design System v2</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -12,465 +12,481 @@
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      background: var(--bg-base);
-      color: var(--text-primary);
+      background: var(--surface-page);
+      color: var(--fg-default);
       font-family: var(--font-sans);
       font-size: var(--text-base);
       line-height: var(--leading-normal);
-      min-height: 100vh;
+      transition: background var(--duration-base) var(--ease), color var(--duration-base) var(--ease);
     }
 
     /* Layout */
-    .page { max-width: 1200px; margin: 0 auto; padding: var(--space-16) var(--space-8); }
+    .page { max-width: 1160px; margin: 0 auto; padding: var(--space-12) var(--space-8); }
     .section { margin-bottom: var(--space-16); }
-    .section-title {
+    .section-label {
       font-size: var(--text-xs);
       font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-wider);
+      letter-spacing: var(--tracking-caps);
       text-transform: uppercase;
-      color: var(--text-muted);
+      color: var(--fg-subtle);
       margin-bottom: var(--space-6);
       padding-bottom: var(--space-3);
-      border-bottom: 1px solid var(--border-subtle);
+      border-bottom: 1px solid var(--border);
     }
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
-    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
-    .grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-4); }
-    .flex-row { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+    .row { display: flex; flex-wrap: wrap; gap: var(--space-3); align-items: center; }
+    .col2 { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); }
+    .col3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); }
+    .col4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
 
-    /* Hero */
-    .hero {
-      text-align: center;
-      padding: var(--space-16) 0 var(--space-20);
+    /* Theme toggle */
+    .theme-toggle {
+      position: fixed;
+      top: 24px; right: 24px;
+      display: flex;
+      background: var(--surface-raised);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 3px;
+      gap: 2px;
+      z-index: var(--z-toast);
     }
-    .hero-logo {
-      font-size: var(--text-5xl);
+    .theme-btn {
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      border: none;
+      cursor: pointer;
+      font-family: var(--font-sans);
+      background: transparent;
+      color: var(--fg-muted);
+      transition: all var(--duration-fast) var(--ease);
+    }
+    .theme-btn.active {
+      background: var(--surface-overlay);
+      color: var(--fg-default);
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: var(--space-16) 0 var(--space-12);
+    }
+    .wordmark {
+      font-size: var(--text-4xl);
       font-weight: var(--weight-black);
       letter-spacing: var(--tracking-tight);
-      color: var(--text-primary);
       line-height: var(--leading-tight);
-      margin-bottom: var(--space-2);
+      color: var(--fg-default);
     }
-    .hero-logo span { color: var(--color-brand-primary-light); }
-    .hero-badge {
+    .wordmark-pi { color: var(--brand-hover); }
+    .version-badge {
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
-      background: var(--bg-elevated);
-      border: 1px solid var(--border-default);
+      background: var(--surface-raised);
+      border: 1px solid var(--border);
       border-radius: var(--radius-full);
-      padding: var(--space-1) var(--space-4);
+      padding: 4px 14px;
       font-size: var(--text-xs);
-      color: var(--text-muted);
-      letter-spacing: var(--tracking-wide);
+      color: var(--fg-subtle);
+      letter-spacing: var(--tracking-caps);
       text-transform: uppercase;
       margin-top: var(--space-4);
-    }
-
-    /* Figma source note */
-    .figma-note {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-      background: rgba(59, 130, 246, 0.06);
-      border: 1px solid rgba(59, 130, 246, 0.18);
-      border-radius: var(--radius-md);
-      padding: var(--space-3) var(--space-4);
-      font-size: var(--text-xs);
-      color: var(--color-info-light);
-      margin-bottom: var(--space-6);
     }
 
     /* Color swatch */
     .swatch {
       border-radius: var(--radius-md);
       overflow: hidden;
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border);
     }
-    .swatch-color {
-      height: 72px;
-    }
+    .swatch-chip { height: 64px; }
     .swatch-info {
-      padding: var(--space-3);
-      background: var(--bg-elevated);
+      padding: 10px 12px;
+      background: var(--surface-raised);
     }
-    .swatch-name {
-      font-size: var(--text-xs);
-      font-weight: var(--weight-medium);
-      color: var(--text-secondary);
-      margin-bottom: 2px;
-    }
-    .swatch-hex {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--text-muted);
-    }
+    .swatch-name { font-size: 11px; font-weight: var(--weight-medium); color: var(--fg-muted); margin-bottom: 2px; }
+    .swatch-val  { font-family: var(--font-mono); font-size: 11px; color: var(--fg-subtle); }
 
-    /* Neutral scale row */
-    .neutral-row {
+    /* Gray scale bar */
+    .gray-bar {
       display: grid;
-      grid-template-columns: repeat(8, 1fr);
-      gap: 0;
+      grid-template-columns: repeat(6, 1fr);
       border-radius: var(--radius-lg);
       overflow: hidden;
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border);
     }
-    .neutral-swatch {
-      padding: 0;
+    .gray-cell-color { height: 72px; }
+    .gray-cell-label {
+      padding: 8px 10px;
+      background: var(--surface-raised);
+      border-top: 1px solid var(--border);
     }
-    .neutral-swatch-color {
-      height: 80px;
-    }
-    .neutral-swatch-label {
-      padding: var(--space-2) var(--space-2);
-      font-family: var(--font-mono);
-      font-size: 10px;
-      color: var(--text-muted);
-      background: var(--bg-elevated);
-      border-top: 1px solid var(--border-subtle);
-      text-align: center;
-    }
+    .gray-cell-hex { font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle); display: block; margin-bottom: 2px; }
+    .gray-cell-use { font-size: 10px; color: var(--fg-subtle); opacity: 0.7; }
 
-    /* Background layers */
-    .bg-layer {
+    /* Semantic token table */
+    .token-table { width: 100%; border-collapse: collapse; font-size: var(--text-sm); }
+    .token-table th {
+      text-align: left;
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-caps);
+      text-transform: uppercase;
+      color: var(--fg-subtle);
+      padding: var(--space-2) var(--space-4);
+      border-bottom: 1px solid var(--border);
+    }
+    .token-table td {
+      padding: 10px var(--space-4);
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    .token-table tr:last-child td { border-bottom: none; }
+    .token-name { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-muted); }
+    .token-chip { width: 24px; height: 24px; border-radius: var(--radius-sm); border: 1px solid var(--border); display: inline-block; vertical-align: middle; margin-right: 8px; }
+    .token-hex  { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-subtle); }
+    .token-use  { color: var(--fg-muted); font-size: var(--text-sm); }
+
+    /* Surface demo */
+    .surface-stack { display: flex; flex-direction: column; gap: var(--space-2); }
+    .surface-row {
+      padding: var(--space-4) var(--space-5);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: var(--space-4) var(--space-6);
-      border: 1px solid var(--border-subtle);
-      border-radius: var(--radius-md);
-      margin-bottom: var(--space-2);
     }
-    .bg-layer-info { display: flex; align-items: center; gap: var(--space-3); }
-    .bg-layer-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
-    .bg-layer-name { font-size: var(--text-sm); font-weight: var(--weight-medium); }
-    .bg-layer-hex {
-      font-family: var(--font-mono);
-      font-size: var(--text-xs);
-      color: var(--text-muted);
-    }
-
-    /* Status badges */
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-1);
-      padding: var(--space-1) var(--space-3);
-      border-radius: var(--radius-full);
-      font-size: var(--text-xs);
-      font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-wide);
-    }
-    .badge-success { background: var(--color-success-bg); border: 1px solid var(--color-success-border); color: var(--color-success-light); }
-    .badge-warning { background: var(--color-warning-bg); border: 1px solid var(--color-warning-border); color: var(--color-warning-light); }
-    .badge-error   { background: var(--color-error-bg);   border: 1px solid var(--color-error-border);   color: var(--color-error-light); }
-    .badge-info    { background: var(--color-info-bg);    border: 1px solid var(--color-info-border);    color: var(--color-info-light); }
+    .surface-label { font-size: var(--text-sm); font-weight: var(--weight-medium); }
+    .surface-meta { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-subtle); }
 
     /* Buttons */
     .btn {
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
-      padding: var(--space-2) var(--space-4);
+      padding: 9px var(--space-4);
       border-radius: var(--radius-md);
       font-size: var(--text-sm);
       font-weight: var(--weight-medium);
       border: none;
       cursor: pointer;
-      transition: all var(--duration-fast) var(--ease-default);
       font-family: var(--font-sans);
+      transition: all var(--duration-fast) var(--ease);
     }
-    .btn-primary  { background: var(--color-accent); color: #fff; }
-    .btn-primary:hover { background: var(--color-accent-light); }
-    .btn-secondary { background: var(--bg-surface); color: var(--text-primary); border: 1px solid var(--border-default); }
-    .btn-secondary:hover { background: var(--bg-overlay); }
-    .btn-ghost { background: transparent; color: var(--text-secondary); border: 1px solid transparent; }
+    .btn-accent   { background: var(--accent); color: #fff; }
+    .btn-accent:hover { background: var(--accent-hover); }
+    .btn-brand    { background: var(--brand); color: #fff; }
+    .btn-brand:hover  { background: var(--brand-hover); }
+    .btn-secondary { background: var(--surface-card); color: var(--fg-default); border: 1px solid var(--border); }
+    .btn-secondary:hover { background: var(--surface-overlay); }
+    .btn-ghost     { background: transparent; color: var(--fg-muted); }
     .btn-ghost:hover { background: var(--bg-hover); }
-    .btn-danger { background: var(--color-error-bg); color: var(--color-error-light); border: 1px solid var(--color-error-border); }
-    .btn-brand { background: var(--color-brand-primary); color: #fff; }
+    .btn-danger    { background: var(--color-error-bg); color: var(--color-error); border: 1px solid var(--color-error-border); }
 
-    /* KPI card */
-    .kpi-card {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-default);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
-    }
-    .kpi-label {
-      font-size: var(--text-xs);
-      font-weight: var(--weight-medium);
-      letter-spacing: var(--tracking-wide);
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: var(--space-2);
-    }
-    .kpi-value {
-      font-family: var(--font-mono);
-      font-size: var(--text-4xl);
-      font-weight: var(--weight-bold);
-      line-height: var(--leading-tight);
-      letter-spacing: var(--tracking-tight);
-      color: var(--text-primary);
-    }
-    .kpi-delta { display: inline-flex; align-items: center; gap: 2px; font-size: var(--text-sm); margin-top: var(--space-2); margin-bottom: var(--space-1); }
-    .kpi-delta-pos { color: var(--color-success); }
-    .kpi-delta-neg { color: var(--color-error); }
-    .kpi-context { font-size: var(--text-xs); color: var(--text-muted); }
-    .kpi-card-critical {
-      border-color: var(--border-accent);
-      background: linear-gradient(135deg, var(--bg-surface) 0%, rgba(250,104,59,0.05) 100%);
-    }
-
-    /* Flow bar */
-    .flow-bar-wrap {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-default);
-      border-radius: var(--radius-lg);
-      padding: var(--space-6);
-    }
-    .flow-title { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--text-secondary); margin-bottom: var(--space-4); }
-    .funnel-step { display: flex; align-items: center; margin-bottom: var(--space-3); gap: var(--space-3); }
-    .funnel-label { font-size: var(--text-xs); color: var(--text-muted); width: 140px; flex-shrink: 0; }
-    .funnel-bar-bg { flex: 1; height: 28px; background: var(--bg-overlay); border-radius: var(--radius-sm); overflow: hidden; }
-    .funnel-bar-fill { height: 100%; border-radius: var(--radius-sm); display: flex; align-items: center; padding-left: var(--space-3); font-family: var(--font-mono); font-size: var(--text-xs); font-weight: var(--weight-semibold); color: #fff; }
-    .funnel-value { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--text-secondary); width: 60px; text-align: right; }
-
-    /* AI insight */
-    .ai-insight { background: var(--color-info-bg); border: 1px solid var(--color-info-border); border-radius: var(--radius-lg); padding: var(--space-5); display: flex; gap: var(--space-4); margin-top: var(--space-4); }
-    .ai-icon { width: 32px; height: 32px; background: var(--color-info-bg); border: 1px solid var(--color-info-border); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
-    .ai-label { font-size: var(--text-2xs); font-weight: var(--weight-medium); letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--color-info-light); margin-bottom: var(--space-1); }
-    .ai-text { font-size: var(--text-sm); color: var(--text-secondary); line-height: var(--leading-relaxed); }
-
-    /* Typography specimens */
-    .type-row { display: flex; align-items: baseline; gap: var(--space-6); padding: var(--space-4) 0; border-bottom: 1px solid var(--border-subtle); }
-    .type-meta { width: 130px; flex-shrink: 0; }
-    .type-name { font-size: var(--text-xs); font-weight: var(--weight-medium); color: var(--text-muted); }
-    .type-size { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--neutral-500); }
-
-    /* Flow gradient */
-    .flow-gradient { height: 40px; border-radius: var(--radius-md); background: linear-gradient(to right, var(--flow-loss), var(--flow-friction), var(--flow-neutral), var(--flow-gain)); margin-bottom: var(--space-3); }
-    .flow-labels { display: flex; justify-content: space-between; }
-    .flow-label { font-size: var(--text-2xs); font-family: var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-wide); }
-
-    /* Alert */
-    .alert { border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); display: flex; gap: var(--space-3); align-items: flex-start; margin-bottom: var(--space-3); }
-    .alert-icon { font-size: 16px; line-height: 1.5; flex-shrink: 0; }
-    .alert-body { font-size: var(--text-sm); line-height: var(--leading-relaxed); }
-    .alert-title { font-weight: var(--weight-semibold); margin-bottom: 2px; }
-    .alert-success { background: var(--color-success-bg); border: 1px solid var(--color-success-border); color: var(--color-success-light); }
-    .alert-warning { background: var(--color-warning-bg); border: 1px solid var(--color-warning-border); color: var(--color-warning-light); }
-    .alert-error   { background: var(--color-error-bg);   border: 1px solid var(--color-error-border);   color: var(--color-error-light); }
-    .alert-info    { background: var(--color-info-bg);    border: 1px solid var(--color-info-border);    color: var(--color-info-light); }
-
-    /* Input */
-    .input { width: 100%; padding: var(--space-3) var(--space-4); background: var(--bg-elevated); border: 1px solid var(--border-default); border-radius: var(--radius-md); color: var(--text-primary); font-family: var(--font-sans); font-size: var(--text-sm); outline: none; transition: border-color var(--duration-fast); }
-    .input:focus { border-color: var(--border-strong); box-shadow: var(--shadow-brand); }
-    .input::placeholder { color: var(--neutral-500); }
-
-    /* Logo display */
-    .logo-icon {
+    /* Badge */
+    .badge {
       display: inline-flex;
       align-items: center;
-      justify-content: center;
-      width: 56px;
-      height: 56px;
-      background: var(--color-brand-primary);
-      border-radius: 14px;
-      font-size: 28px;
-      font-weight: var(--weight-black);
-      color: #fff;
-      font-family: var(--font-sans);
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: var(--radius-full);
+      font-size: var(--text-xs);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-caps);
     }
-    .logo-wordmark {
-      font-size: var(--text-2xl);
-      font-weight: var(--weight-black);
-      color: var(--text-primary);
-      letter-spacing: var(--tracking-tight);
-    }
+    .badge-success { background: var(--color-success-bg); border: 1px solid var(--color-success-border); color: var(--color-success); }
+    .badge-warning { background: var(--color-warning-bg); border: 1px solid var(--color-warning-border); color: var(--color-warning); }
+    .badge-error   { background: var(--color-error-bg);   border: 1px solid var(--color-error-border);   color: var(--color-error); }
+    .badge-info    { background: var(--color-info-bg);    border: 1px solid var(--color-info-border);    color: var(--color-info); }
 
-    /* Spacing demo */
-    .space-demo { display: flex; align-items: flex-end; gap: var(--space-4); }
-    .space-box { background: var(--color-brand-primary-dim); border: 1px solid var(--color-brand-primary-light); border-radius: var(--radius-sm); }
-    .space-label { font-family: var(--font-mono); font-size: var(--text-2xs); color: var(--text-muted); text-align: center; margin-top: var(--space-1); }
+    /* KPI card */
+    .kpi {
+      background: var(--surface-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+    }
+    .kpi-label { font-size: var(--text-xs); font-weight: var(--weight-medium); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-subtle); margin-bottom: var(--space-2); }
+    .kpi-value { font-family: var(--font-mono); font-size: var(--text-4xl); font-weight: var(--weight-bold); line-height: var(--leading-tight); letter-spacing: var(--tracking-tight); }
+    .kpi-delta { font-size: var(--text-sm); margin-top: var(--space-2); margin-bottom: 2px; }
+    .kpi-ctx   { font-size: var(--text-xs); color: var(--fg-subtle); }
+    .kpi-pos   { color: var(--color-success); }
+    .kpi-neg   { color: var(--color-error); }
+    .kpi-alert { border-color: var(--color-error-border); }
+    .kpi-alert .kpi-label { color: var(--color-error); }
+    .kpi-alert .kpi-value { color: var(--accent); }
+
+    /* Funnel */
+    .funnel { background: var(--surface-card); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: var(--space-6); }
+    .funnel-title { font-size: var(--text-sm); font-weight: var(--weight-medium); color: var(--fg-muted); margin-bottom: var(--space-5); }
+    .funnel-row { display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3); }
+    .funnel-name { font-size: var(--text-xs); color: var(--fg-subtle); width: 130px; flex-shrink: 0; }
+    .funnel-track { flex: 1; height: 26px; background: var(--surface-overlay); border-radius: var(--radius-sm); overflow: hidden; }
+    .funnel-fill  { height: 100%; display: flex; align-items: center; padding-left: 10px; font-family: var(--font-mono); font-size: var(--text-xs); font-weight: var(--weight-semibold); color: #fff; border-radius: var(--radius-sm); }
+    .funnel-num   { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--fg-muted); width: 52px; text-align: right; }
+
+    /* AI insight */
+    .insight { background: var(--color-info-bg); border: 1px solid var(--color-info-border); border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); display: flex; gap: var(--space-3); margin-top: var(--space-5); }
+    .insight-icon { font-size: 16px; line-height: 1.6; flex-shrink: 0; }
+    .insight-head { font-size: var(--text-xs); font-weight: var(--weight-semibold); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--color-info); margin-bottom: 4px; }
+    .insight-text { font-size: var(--text-sm); color: var(--fg-muted); line-height: var(--leading-loose); }
+
+    /* Alert */
+    .alert { border-radius: var(--radius-md); padding: var(--space-4); display: flex; gap: var(--space-3); margin-bottom: var(--space-3); align-items: flex-start; }
+    .alert-icon { flex-shrink: 0; font-size: 15px; line-height: 1.5; }
+    .alert-title { font-weight: var(--weight-semibold); font-size: var(--text-sm); margin-bottom: 2px; }
+    .alert-body  { font-size: var(--text-sm); line-height: var(--leading-normal); }
+    .alert-s { background: var(--color-success-bg); border: 1px solid var(--color-success-border); color: var(--color-success); }
+    .alert-w { background: var(--color-warning-bg); border: 1px solid var(--color-warning-border); color: var(--color-warning); }
+    .alert-e { background: var(--color-error-bg);   border: 1px solid var(--color-error-border);   color: var(--color-error); }
+    .alert-i { background: var(--color-info-bg);    border: 1px solid var(--color-info-border);    color: var(--color-info); }
+
+    /* Input */
+    .field label { display: block; font-size: var(--text-xs); font-weight: var(--weight-medium); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-subtle); margin-bottom: var(--space-2); }
+    .input { width: 100%; padding: 10px var(--space-4); background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--fg-default); font-family: var(--font-sans); font-size: var(--text-sm); outline: none; transition: border-color var(--duration-fast); }
+    .input:focus { border-color: var(--border-focus); box-shadow: var(--shadow-brand); }
+    .input::placeholder { color: var(--fg-subtle); }
+
+    /* Type specimen */
+    .type-row { display: flex; align-items: baseline; gap: var(--space-6); padding: var(--space-4) 0; border-bottom: 1px solid var(--border); }
+    .type-meta { width: 130px; flex-shrink: 0; }
+    .type-name { font-size: var(--text-xs); font-weight: var(--weight-medium); color: var(--fg-muted); }
+    .type-size { font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle); margin-top: 2px; }
+
+    /* Flow gradient */
+    .flow-grad { height: 36px; border-radius: var(--radius-md); background: linear-gradient(to right, var(--flow-bad), var(--flow-warn), var(--flow-neutral), var(--flow-good)); margin-bottom: var(--space-2); }
+    .flow-labels { display: flex; justify-content: space-between; }
+    .flow-lbl { font-size: 10px; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: var(--tracking-caps); }
+
+    hr { border: none; border-top: 1px solid var(--border); margin: var(--space-8) 0; }
   </style>
 </head>
 <body>
+
+<div class="theme-toggle">
+  <button class="theme-btn active" onclick="setTheme('dark',this)">Тёмная</button>
+  <button class="theme-btn" onclick="setTheme('light',this)">Светлая</button>
+</div>
+
 <div class="page">
 
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-logo"><span>π</span>оток</div>
-    <div style="display:flex; justify-content:center; margin-top: var(--space-3);">
-      <span class="hero-badge">Design System · v1.1 · Dark Theme</span>
-    </div>
-  </div>
-
-  <!-- Figma source note -->
-  <div style="margin-bottom: var(--space-12);">
-    <div class="figma-note">
-      ✦ Палитра синхронизирована с Figma-файлом — accent #FA683B, success #5FC62F, error #E84064, neutral scale #0B0B0E→#FBFBFB
+  <!-- HEADER -->
+  <div class="header">
+    <div class="wordmark"><span class="wordmark-pi">π</span>оток</div>
+    <div style="display:flex; justify-content:center;">
+      <span class="version-badge">Design System · v2.0 · Semantic</span>
     </div>
   </div>
 
 
-  <!-- BRAND IDENTITY -->
+  <!-- GRAY SCALE -->
   <div class="section">
-    <div class="section-title">Логотип и идентичность</div>
-    <div class="flex-row" style="gap: var(--space-8); align-items: center; padding: var(--space-8); background: var(--bg-elevated); border-radius: var(--radius-lg); border: 1px solid var(--border-default); margin-bottom: var(--space-4);">
-      <div class="logo-icon">π</div>
-      <div class="logo-wordmark">Поток</div>
-    </div>
-    <div class="flex-row" style="gap: var(--space-8); align-items: center; padding: var(--space-8); background: var(--color-brand-primary); border-radius: var(--radius-lg);">
-      <div style="display:inline-flex; align-items:center; justify-content:center; width:56px; height:56px; background:rgba(255,255,255,0.15); border-radius:14px; font-size:28px; font-weight:900; color:#fff;">π</div>
-      <div style="font-size: var(--text-2xl); font-weight: 900; color: #fff; letter-spacing: var(--tracking-tight);">Поток</div>
-    </div>
-  </div>
-
-
-  <!-- BRAND COLORS -->
-  <div class="section">
-    <div class="section-title">Бренд-цвета</div>
-    <div class="grid-4" style="margin-bottom: var(--space-4);">
-      <div class="swatch">
-        <div class="swatch-color" style="background:#20208B;"></div>
-        <div class="swatch-info">
-          <div class="swatch-name">brand-primary</div>
-          <div class="swatch-hex">#20208B</div>
+    <div class="section-label">Нейтральная шкала — 6 значений (Figma)</div>
+    <div class="gray-bar">
+      <div>
+        <div class="gray-cell-color" style="background:#0B0B0E;"></div>
+        <div class="gray-cell-label">
+          <span class="gray-cell-hex">#0B0B0E</span>
+          <span class="gray-cell-use">gray-0</span>
         </div>
       </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#2929B8;"></div>
-        <div class="swatch-info">
-          <div class="swatch-name">brand-primary-light</div>
-          <div class="swatch-hex">#2929B8 · hover</div>
+      <div>
+        <div class="gray-cell-color" style="background:#242628;"></div>
+        <div class="gray-cell-label">
+          <span class="gray-cell-hex">#242628</span>
+          <span class="gray-cell-use">gray-1</span>
         </div>
       </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#FA683B;"></div>
-        <div class="swatch-info">
-          <div class="swatch-name">accent</div>
-          <div class="swatch-hex">#FA683B · CTA</div>
+      <div>
+        <div class="gray-cell-color" style="background:#4E5258;"></div>
+        <div class="gray-cell-label">
+          <span class="gray-cell-hex">#4E5258</span>
+          <span class="gray-cell-use">gray-2</span>
         </div>
       </div>
-      <div class="swatch">
-        <div class="swatch-color" style="background:#FB7D55;"></div>
-        <div class="swatch-info">
-          <div class="swatch-name">accent-light</div>
-          <div class="swatch-hex">#FB7D55 · hover</div>
+      <div>
+        <div class="gray-cell-color" style="background:#6B7079;"></div>
+        <div class="gray-cell-label">
+          <span class="gray-cell-hex">#6B7079</span>
+          <span class="gray-cell-use">gray-3</span>
+        </div>
+      </div>
+      <div>
+        <div class="gray-cell-color" style="background:#A9ACB3;"></div>
+        <div class="gray-cell-label" style="color:#3C3E41;">
+          <span class="gray-cell-hex" style="color:#3C3E41;">#A9ACB3</span>
+          <span class="gray-cell-use" style="color:#4E5258;">gray-4</span>
+        </div>
+      </div>
+      <div>
+        <div class="gray-cell-color" style="background:#FBFBFB;"></div>
+        <div class="gray-cell-label" style="color:#3C3E41;">
+          <span class="gray-cell-hex" style="color:#3C3E41;">#FBFBFB</span>
+          <span class="gray-cell-use" style="color:#4E5258;">gray-5</span>
         </div>
       </div>
     </div>
   </div>
 
 
-  <!-- NEUTRAL SCALE -->
+  <!-- SEMANTIC TOKENS: SURFACES + FG -->
   <div class="section">
-    <div class="section-title">Нейтральная шкала — из Figma</div>
-    <div class="neutral-row">
-      <div class="neutral-swatch">
-        <div class="neutral-swatch-color" style="background:#0B0B0E;"></div>
-        <div class="neutral-swatch-label">#0B0B0E<br>900</div>
+    <div class="section-label">Семантические токены — поверхности и текст</div>
+    <div class="col2">
+      <!-- Surfaces -->
+      <div>
+        <div style="font-size:var(--text-xs); font-weight:var(--weight-medium); color:var(--fg-muted); margin-bottom:var(--space-3);">Поверхности (4 уровня)</div>
+        <div class="surface-stack">
+          <div class="surface-row" style="background:var(--surface-page);">
+            <div>
+              <div class="surface-label">--surface-page</div>
+              <div class="surface-meta">Фон страницы</div>
+            </div>
+            <div class="surface-meta" id="page-val">dark: #0B0B0E</div>
+          </div>
+          <div class="surface-row" style="background:var(--surface-raised);">
+            <div>
+              <div class="surface-label">--surface-raised</div>
+              <div class="surface-meta">Сайдбар, хедер</div>
+            </div>
+            <div class="surface-meta" id="raised-val">dark: #242628</div>
+          </div>
+          <div class="surface-row" style="background:var(--surface-card);">
+            <div>
+              <div class="surface-label">--surface-card</div>
+              <div class="surface-meta">Карточки, панели</div>
+            </div>
+            <div class="surface-meta">dark: #3C3E41</div>
+          </div>
+          <div class="surface-row" style="background:var(--surface-overlay);">
+            <div>
+              <div class="surface-label">--surface-overlay</div>
+              <div class="surface-meta">Модалки, поповеры</div>
+            </div>
+            <div class="surface-meta">dark: #4E5258</div>
+          </div>
+        </div>
       </div>
-      <div class="neutral-swatch">
-        <div class="neutral-swatch-color" style="background:#242628;"></div>
-        <div class="neutral-swatch-label">#242628<br>800</div>
-      </div>
-      <div class="neutral-swatch">
-        <div class="neutral-swatch-color" style="background:#3C3E41;"></div>
-        <div class="neutral-swatch-label">#3C3E41<br>700</div>
-      </div>
-      <div class="neutral-swatch">
-        <div class="neutral-swatch-color" style="background:#4E5258;"></div>
-        <div class="neutral-swatch-label">#4E5258<br>600</div>
-      </div>
-      <div class="neutral-swatch">
-        <div class="neutral-swatch-color" style="background:#6B7079;"></div>
-        <div class="neutral-swatch-label">#6B7079<br>500</div>
-      </div>
-      <div class="neutral-swatch">
-        <div class="neutral-swatch-color" style="background:#A9ACB3;"></div>
-        <div class="neutral-swatch-label" style="color:#3C3E41;">#A9ACB3<br>400</div>
-      </div>
-      <div class="neutral-swatch">
-        <div class="neutral-swatch-color" style="background:#F0F1F2;"></div>
-        <div class="neutral-swatch-label" style="color:#3C3E41;">#F0F1F2<br>200</div>
-      </div>
-      <div class="neutral-swatch">
-        <div class="neutral-swatch-color" style="background:#FBFBFB; border-right: none;"></div>
-        <div class="neutral-swatch-label" style="color:#3C3E41;">#FBFBFB<br>100</div>
+
+      <!-- Text -->
+      <div>
+        <div style="font-size:var(--text-xs); font-weight:var(--weight-medium); color:var(--fg-muted); margin-bottom:var(--space-3);">Текст (3 уровня) + граница</div>
+        <table class="token-table" style="background:var(--surface-raised); border-radius:var(--radius-lg); overflow:hidden; border: 1px solid var(--border);">
+          <thead>
+            <tr>
+              <th>Токен</th>
+              <th>Цвет</th>
+              <th>Применение</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="token-name">--fg-default</span></td>
+              <td><span class="token-chip" style="background:var(--fg-default);"></span></td>
+              <td class="token-use">Основной текст, иконки</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--fg-muted</span></td>
+              <td><span class="token-chip" style="background:var(--fg-muted);"></span></td>
+              <td class="token-use">Лейблы, вторичный текст</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--fg-subtle</span></td>
+              <td><span class="token-chip" style="background:var(--fg-subtle);"></span></td>
+              <td class="token-use">Плейсхолдеры, disabled</td>
+            </tr>
+            <tr>
+              <td><span class="token-name">--border</span></td>
+              <td><span class="token-chip" style="background:rgba(169,172,179,0.15); border: 1px solid rgba(169,172,179,0.4);"></span></td>
+              <td class="token-use">Все разделители</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top:var(--space-4); background:var(--surface-raised); border:1px solid var(--border); border-radius:var(--radius-lg); padding:var(--space-4);">
+          <div style="font-size:var(--text-xs); color:var(--fg-subtle); margin-bottom:var(--space-2); letter-spacing:var(--tracking-caps); text-transform:uppercase;">Пример текстовой иерархии</div>
+          <div style="font-weight:var(--weight-semibold); color:var(--fg-default); margin-bottom:4px;">Выручка за апрель</div>
+          <div style="font-size:var(--text-sm); color:var(--fg-muted); margin-bottom:4px;">Данные обновлены 5 мин назад</div>
+          <div style="font-size:var(--text-xs); color:var(--fg-subtle);">Источник: Stripe</div>
+        </div>
       </div>
     </div>
   </div>
 
 
-  <!-- BACKGROUND LAYERS -->
+  <!-- BRAND -->
   <div class="section">
-    <div class="section-title">Фоновый стек — тёмная тема</div>
-    <div class="bg-layer" style="background: #0B0B0E;">
-      <div class="bg-layer-info">
-        <div class="bg-layer-dot" style="background:#242628; border: 1px solid #3C3E41;"></div>
-        <span class="bg-layer-name">bg-base — Страница</span>
+    <div class="section-label">Бренд-цвета</div>
+    <div class="col4">
+      <div class="swatch">
+        <div class="swatch-chip" style="background:#20208B;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">--brand</div>
+          <div class="swatch-val">#20208B</div>
+        </div>
       </div>
-      <span class="bg-layer-hex">neutral-900 · #0B0B0E</span>
-    </div>
-    <div class="bg-layer" style="background: #242628;">
-      <div class="bg-layer-info">
-        <div class="bg-layer-dot" style="background:#3C3E41;"></div>
-        <span class="bg-layer-name">bg-elevated — Сайдбар, хедер</span>
+      <div class="swatch">
+        <div class="swatch-chip" style="background:#2929B8;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">--brand-hover</div>
+          <div class="swatch-val">#2929B8</div>
+        </div>
       </div>
-      <span class="bg-layer-hex">neutral-800 · #242628</span>
-    </div>
-    <div class="bg-layer" style="background: #3C3E41;">
-      <div class="bg-layer-info">
-        <div class="bg-layer-dot" style="background:#4E5258;"></div>
-        <span class="bg-layer-name">bg-surface — Карточки, панели</span>
+      <div class="swatch">
+        <div class="swatch-chip" style="background:#FA683B;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">--accent</div>
+          <div class="swatch-val">#FA683B · CTA</div>
+        </div>
       </div>
-      <span class="bg-layer-hex">neutral-700 · #3C3E41</span>
-    </div>
-    <div class="bg-layer" style="background: #4E5258;">
-      <div class="bg-layer-info">
-        <div class="bg-layer-dot" style="background:#6B7079;"></div>
-        <span class="bg-layer-name">bg-overlay — Модалки, поповеры</span>
+      <div class="swatch">
+        <div class="swatch-chip" style="background:#FB7D55;"></div>
+        <div class="swatch-info">
+          <div class="swatch-name">--accent-hover</div>
+          <div class="swatch-val">#FB7D55</div>
+        </div>
       </div>
-      <span class="bg-layer-hex">neutral-600 · #4E5258</span>
     </div>
   </div>
 
 
   <!-- STATUS COLORS -->
   <div class="section">
-    <div class="section-title">Статусные цвета — из Figma</div>
-    <div class="grid-4" style="margin-bottom: var(--space-6);">
+    <div class="section-label">Статусные цвета — функциональные</div>
+    <div class="col4" style="margin-bottom:var(--space-5);">
       <div class="swatch">
-        <div class="swatch-color" style="background:#5FC62F;"></div>
+        <div class="swatch-chip" style="background:#5FC62F;"></div>
         <div class="swatch-info">
-          <div class="swatch-name">success</div>
-          <div class="swatch-hex">#5FC62F · Рост</div>
+          <div class="swatch-name">--color-success</div>
+          <div class="swatch-val">#5FC62F · Рост</div>
         </div>
       </div>
       <div class="swatch">
-        <div class="swatch-color" style="background:#FBBF48;"></div>
+        <div class="swatch-chip" style="background:#FBBF48;"></div>
         <div class="swatch-info">
-          <div class="swatch-name">warning</div>
-          <div class="swatch-hex">#FBBF48 · Внимание</div>
+          <div class="swatch-name">--color-warning</div>
+          <div class="swatch-val">#FBBF48 · Внимание</div>
         </div>
       </div>
       <div class="swatch">
-        <div class="swatch-color" style="background:#E84064;"></div>
+        <div class="swatch-chip" style="background:#E84064;"></div>
         <div class="swatch-info">
-          <div class="swatch-name">error</div>
-          <div class="swatch-hex">#E84064 · Падение</div>
+          <div class="swatch-name">--color-error</div>
+          <div class="swatch-val">#E84064 · Потеря</div>
         </div>
       </div>
       <div class="swatch">
-        <div class="swatch-color" style="background:#3B82F6;"></div>
+        <div class="swatch-chip" style="background:#3B82F6;"></div>
         <div class="swatch-info">
-          <div class="swatch-name">info</div>
-          <div class="swatch-hex">#3B82F6 · AI, контекст</div>
+          <div class="swatch-name">--color-info</div>
+          <div class="swatch-val">#3B82F6 · AI, контекст</div>
         </div>
       </div>
     </div>
-    <div class="flex-row">
+    <div class="row">
       <span class="badge badge-success">↑ Рост +24%</span>
       <span class="badge badge-warning">⚠ Порог CAC</span>
       <span class="badge badge-error">↓ Отвал −18%</span>
@@ -479,163 +495,102 @@
   </div>
 
 
-  <!-- DATA VISUALIZATION GRADIENT -->
+  <!-- FLOW GRADIENT -->
   <div class="section">
-    <div class="section-title">Градиент потока — воронка / здоровье бизнеса</div>
-    <div class="flow-gradient"></div>
+    <div class="section-label">Градиент потока — здоровье воронки</div>
+    <div class="flow-grad"></div>
     <div class="flow-labels">
-      <span class="flow-label" style="color: var(--flow-loss);">Потеря</span>
-      <span class="flow-label" style="color: var(--flow-friction);">Трение</span>
-      <span class="flow-label" style="color: var(--flow-neutral);">Нейтраль</span>
-      <span class="flow-label" style="color: var(--flow-gain);">Рост</span>
+      <span class="flow-lbl" style="color:var(--flow-bad);">Потеря</span>
+      <span class="flow-lbl" style="color:var(--flow-warn);">Трение</span>
+      <span class="flow-lbl" style="color:var(--flow-neutral);">Нейтраль</span>
+      <span class="flow-lbl" style="color:var(--flow-good);">Рост</span>
     </div>
   </div>
 
 
   <!-- TYPOGRAPHY -->
   <div class="section">
-    <div class="section-title">Типографика — Inter</div>
+    <div class="section-label">Типографика — Inter + JetBrains Mono</div>
 
     <div class="type-row">
-      <div class="type-meta">
-        <div class="type-name">text-5xl</div>
-        <div class="type-size">60px · Black 900</div>
-      </div>
-      <div style="font-size: var(--text-5xl); font-weight: 900; line-height: 1.2; letter-spacing: -0.02em;">₽2.4М</div>
-    </div>
-
-    <div class="type-row">
-      <div class="type-meta">
-        <div class="type-name">text-4xl</div>
-        <div class="type-size">48px · Bold 700</div>
-      </div>
-      <div style="font-size: var(--text-4xl); font-weight: 700; line-height: 1.2; letter-spacing: -0.02em;">Выручка за 30 дней</div>
-    </div>
-
-    <div class="type-row">
-      <div class="type-meta">
-        <div class="type-name">text-3xl</div>
-        <div class="type-size">36px · Bold 700</div>
-      </div>
-      <div style="font-size: var(--text-3xl); font-weight: 700; line-height: 1.2;">Главная метрика</div>
-    </div>
-
-    <div class="type-row">
-      <div class="type-meta">
-        <div class="type-name">text-xl</div>
-        <div class="type-size">24px · Semibold 600</div>
-      </div>
-      <div style="font-size: var(--text-xl); font-weight: 600;">Заголовок секции</div>
-    </div>
-
-    <div class="type-row">
-      <div class="type-meta">
-        <div class="type-name">text-base</div>
-        <div class="type-size">16px · Regular 400</div>
-      </div>
-      <div style="font-size: 1rem; color: var(--text-secondary); max-width: 500px;">
-        На 2-м шаге воронки вы теряете каждого пятого клиента. Это ₽340 000 в месяц, которые уходят незамеченными.
-      </div>
-    </div>
-
-    <div class="type-row">
-      <div class="type-meta">
-        <div class="type-name">text-xs · CAPS</div>
-        <div class="type-size">12px · Medium 500</div>
-      </div>
-      <div style="font-size: 0.75rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted);">Метка поля · Подпись к чарту</div>
-    </div>
-  </div>
-
-
-  <!-- MONOSPACE -->
-  <div class="section">
-    <div class="section-title">JetBrains Mono — числа и данные</div>
-    <div class="type-row">
-      <div class="type-meta"><div class="type-name">KPI числа</div><div class="type-size">mono · bold</div></div>
-      <div style="font-family: var(--font-mono); font-size: var(--text-4xl); font-weight: 700; letter-spacing: -0.02em;">1 248 340</div>
+      <div class="type-meta"><div class="type-name">text-5xl</div><div class="type-size">60px · Black 900</div></div>
+      <div style="font-size:var(--text-5xl);font-weight:900;line-height:1.2;letter-spacing:-0.02em;">₽2.4М</div>
     </div>
     <div class="type-row">
-      <div class="type-meta"><div class="type-name">Таблица</div><div class="type-size">mono · regular</div></div>
-      <div style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--text-secondary);">CAC: ₽2 840 &nbsp;·&nbsp; LTV: ₽18 200 &nbsp;·&nbsp; Churn: 4.2%</div>
+      <div class="type-meta"><div class="type-name">text-4xl · mono</div><div class="type-size">48px · Bold</div></div>
+      <div style="font-family:var(--font-mono);font-size:var(--text-4xl);font-weight:700;line-height:1.2;letter-spacing:-0.02em;">1 248 340</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><div class="type-name">text-xl</div><div class="type-size">24px · Semibold</div></div>
+      <div style="font-size:var(--text-xl);font-weight:600;">Заголовок раздела</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><div class="type-name">text-base</div><div class="type-size">16px · Regular</div></div>
+      <div style="font-size:1rem;color:var(--fg-muted);max-width:480px;">На 2-м шаге вы теряете каждого пятого клиента — это ₽340 000 в месяц уходит незамеченными.</div>
+    </div>
+    <div class="type-row">
+      <div class="type-meta"><div class="type-name">text-xs · CAPS</div><div class="type-size">12px · Medium</div></div>
+      <div style="font-size:0.75rem;font-weight:500;letter-spacing:0.07em;text-transform:uppercase;color:var(--fg-subtle);">Метка поля · Подпись к чарту</div>
     </div>
   </div>
 
 
   <!-- KPI CARDS -->
   <div class="section">
-    <div class="section-title">KPI-карточки</div>
-    <div class="grid-3">
-      <div class="kpi-card">
+    <div class="section-label">KPI-карточки</div>
+    <div class="col3">
+      <div class="kpi">
         <div class="kpi-label">Выручка</div>
         <div class="kpi-value">₽2.4М</div>
-        <div class="kpi-delta kpi-delta-pos">↑ +18.4%</div>
-        <div class="kpi-context">vs прошлый месяц</div>
+        <div class="kpi-delta kpi-pos">↑ +18.4%</div>
+        <div class="kpi-ctx">vs прошлый месяц</div>
       </div>
-
-      <div class="kpi-card">
+      <div class="kpi">
         <div class="kpi-label">Новые клиенты</div>
         <div class="kpi-value">348</div>
-        <div class="kpi-delta kpi-delta-neg">↓ −7.2%</div>
-        <div class="kpi-context">за последние 30 дней</div>
+        <div class="kpi-delta kpi-neg">↓ −7.2%</div>
+        <div class="kpi-ctx">за 30 дней</div>
       </div>
-
-      <div class="kpi-card kpi-card-critical">
-        <div class="kpi-label" style="color: var(--color-accent);">⚠ Точка слива</div>
-        <div class="kpi-value" style="color: var(--color-accent);">Шаг 2</div>
-        <div class="kpi-delta kpi-delta-neg">−38% конверсии</div>
-        <div class="kpi-context">₽840 000 потеряно в этом месяце</div>
+      <div class="kpi kpi-alert">
+        <div class="kpi-label">⚠ Точка слива</div>
+        <div class="kpi-value">Шаг 2</div>
+        <div class="kpi-delta kpi-neg">−38% конверсии</div>
+        <div class="kpi-ctx">₽840 000 потеряно за месяц</div>
       </div>
     </div>
   </div>
 
 
-  <!-- FUNNEL VISUALIZATION -->
+  <!-- FUNNEL -->
   <div class="section">
-    <div class="section-title">Воронка — пример визуализации потока</div>
-    <div class="flow-bar-wrap">
-      <div class="flow-title">Воронка продаж · 30 дней</div>
-
-      <div class="funnel-step">
-        <div class="funnel-label">1. Визит</div>
-        <div class="funnel-bar-bg">
-          <div class="funnel-bar-fill" style="width:100%; background: var(--color-brand-primary);">10 000</div>
-        </div>
-        <div class="funnel-value">10 000</div>
+    <div class="section-label">Воронка продаж</div>
+    <div class="funnel">
+      <div class="funnel-title">30 дней · Все каналы</div>
+      <div class="funnel-row">
+        <div class="funnel-name">1. Визит</div>
+        <div class="funnel-track"><div class="funnel-fill" style="width:100%;background:var(--brand);">10 000</div></div>
+        <div class="funnel-num">10 000</div>
       </div>
-
-      <div class="funnel-step">
-        <div class="funnel-label">2. Регистрация</div>
-        <div class="funnel-bar-bg">
-          <div class="funnel-bar-fill" style="width:62%; background: var(--flow-friction);">6 200</div>
-        </div>
-        <div class="funnel-value" style="color: var(--color-warning);">6 200</div>
+      <div class="funnel-row">
+        <div class="funnel-name">2. Регистрация</div>
+        <div class="funnel-track"><div class="funnel-fill" style="width:62%;background:var(--flow-warn);">6 200</div></div>
+        <div class="funnel-num" style="color:var(--color-warning);">6 200</div>
       </div>
-
-      <div class="funnel-step">
-        <div class="funnel-label">3. Активация</div>
-        <div class="funnel-bar-bg">
-          <div class="funnel-bar-fill" style="width:38%; background: var(--flow-friction);">3 800</div>
-        </div>
-        <div class="funnel-value" style="color: var(--color-warning);">3 800</div>
+      <div class="funnel-row">
+        <div class="funnel-name">3. Активация</div>
+        <div class="funnel-track"><div class="funnel-fill" style="width:38%;background:var(--flow-warn);">3 800</div></div>
+        <div class="funnel-num" style="color:var(--color-warning);">3 800</div>
       </div>
-
-      <div class="funnel-step">
-        <div class="funnel-label" style="color: var(--color-error);">⚠ 4. Оплата</div>
-        <div class="funnel-bar-bg">
-          <div class="funnel-bar-fill" style="width:12%; background: var(--flow-loss);">1 200</div>
-        </div>
-        <div class="funnel-value" style="color: var(--color-error);">1 200</div>
+      <div class="funnel-row">
+        <div class="funnel-name" style="color:var(--color-error);">⚠ 4. Оплата</div>
+        <div class="funnel-track"><div class="funnel-fill" style="width:12%;background:var(--flow-bad);">1 200</div></div>
+        <div class="funnel-num" style="color:var(--color-error);">1 200</div>
       </div>
-
-      <div class="ai-insight">
-        <div class="ai-icon">✦</div>
+      <div class="insight">
+        <div class="insight-icon">✦</div>
         <div>
-          <div class="ai-label">AI-инсайт</div>
-          <div class="ai-text">
-            На шаге «Оплата» отваливается 68% активированных пользователей — это нетипично высоко для SaaS.
-            Вероятная причина: цена не совпадает с ожиданиями на этапе активации.
-          </div>
+          <div class="insight-head">AI-инсайт</div>
+          <div class="insight-text">На шаге «Оплата» отваливается 68% активированных — нетипично высоко. Вероятная причина: цена не совпадает с ожиданиями на этапе активации.</div>
         </div>
       </div>
     </div>
@@ -644,9 +599,9 @@
 
   <!-- BUTTONS -->
   <div class="section">
-    <div class="section-title">Кнопки</div>
-    <div class="flex-row" style="margin-bottom: var(--space-4);">
-      <button class="btn btn-primary">Загрузить данные</button>
+    <div class="section-label">Кнопки</div>
+    <div class="row">
+      <button class="btn btn-accent">Загрузить данные</button>
       <button class="btn btn-brand">Подключить источник</button>
       <button class="btn btn-secondary">Экспорт</button>
       <button class="btn btn-ghost">Отмена</button>
@@ -657,76 +612,44 @@
 
   <!-- ALERTS -->
   <div class="section">
-    <div class="section-title">Уведомления</div>
-    <div class="alert alert-success">
-      <div class="alert-icon">↑</div>
-      <div class="alert-body">
-        <div class="alert-title">Конверсия выросла на 12%</div>
-        После изменения цены на тарифе Pro — ожидаемый эффект через 3–5 дней.
-      </div>
-    </div>
-    <div class="alert alert-warning">
-      <div class="alert-icon">⚠</div>
-      <div class="alert-body">
-        <div class="alert-title">CAC приближается к порогу</div>
-        Стоимость привлечения клиента: ₽3 200. Граница рентабельности: ₽3 500.
-      </div>
-    </div>
-    <div class="alert alert-error">
-      <div class="alert-icon">↓</div>
-      <div class="alert-body">
-        <div class="alert-title">Шаг 2 воронки сломан</div>
-        38% пользователей уходят после регистрации. Это ₽840 000 потерянного дохода в этом месяце.
-      </div>
-    </div>
-    <div class="alert alert-info">
-      <div class="alert-icon">✦</div>
-      <div class="alert-body">
-        <div class="alert-title">AI нашёл паттерн</div>
-        Пятница — аномальный день: 38% всех отменённых транзакций происходит в пятницу.
-      </div>
-    </div>
+    <div class="section-label">Уведомления</div>
+    <div class="alert alert-s"><div class="alert-icon">↑</div><div class="alert-body"><div class="alert-title">Конверсия выросла на 12%</div>После смены цены на Pro — эффект через 3–5 дней.</div></div>
+    <div class="alert alert-w"><div class="alert-icon">⚠</div><div class="alert-body"><div class="alert-title">CAC приближается к порогу</div>Текущий ₽3 200, граница рентабельности ₽3 500.</div></div>
+    <div class="alert alert-e"><div class="alert-icon">↓</div><div class="alert-body"><div class="alert-title">Шаг 2 воронки сломан</div>38% уходят после регистрации — ₽840 000 потерянного дохода в месяц.</div></div>
+    <div class="alert alert-i"><div class="alert-icon">✦</div><div class="alert-body"><div class="alert-title">AI нашёл паттерн</div>Пятница — аномальный день: 38% отменённых транзакций происходит в пятницу.</div></div>
   </div>
 
 
-  <!-- FORM INPUT -->
+  <!-- INPUTS -->
   <div class="section">
-    <div class="section-title">Поля ввода</div>
-    <div class="grid-2">
-      <div>
-        <label style="display:block; font-size:0.75rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:var(--space-2);">Выручка за месяц</label>
-        <input class="input" type="text" placeholder="₽0.00" value="₽2 400 000">
+    <div class="section-label">Поля ввода</div>
+    <div class="col2">
+      <div class="field">
+        <label>Выручка за месяц</label>
+        <input class="input" type="text" value="₽2 400 000">
       </div>
-      <div>
-        <label style="display:block; font-size:0.75rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--text-muted); margin-bottom:var(--space-2);">Кол-во новых клиентов</label>
+      <div class="field">
+        <label>Кол-во новых клиентов</label>
         <input class="input" type="text" placeholder="0">
       </div>
     </div>
   </div>
 
 
-  <!-- SPACING -->
-  <div class="section">
-    <div class="section-title">Отступы — 4px-сетка</div>
-    <div class="space-demo">
-      <div><div class="space-box" style="width:4px;height:4px;"></div><div class="space-label">4px</div></div>
-      <div><div class="space-box" style="width:8px;height:8px;"></div><div class="space-label">8px</div></div>
-      <div><div class="space-box" style="width:12px;height:12px;"></div><div class="space-label">12px</div></div>
-      <div><div class="space-box" style="width:16px;height:16px;"></div><div class="space-label">16px</div></div>
-      <div><div class="space-box" style="width:24px;height:24px;"></div><div class="space-label">24px</div></div>
-      <div><div class="space-box" style="width:32px;height:32px;"></div><div class="space-label">32px</div></div>
-      <div><div class="space-box" style="width:48px;height:48px;"></div><div class="space-label">48px</div></div>
-      <div><div class="space-box" style="width:64px;height:64px;"></div><div class="space-label">64px</div></div>
-    </div>
-  </div>
-
-
   <!-- FOOTER -->
-  <div style="text-align:center; padding:var(--space-16) 0 var(--space-8); border-top:1px solid var(--border-subtle); margin-top:var(--space-16);">
-    <div style="font-size:var(--text-sm); color:var(--text-muted);">πоток Design System · v1.1 · Source: Figma</div>
-    <div style="font-size:var(--text-xs); color:var(--neutral-500); margin-top:var(--space-2);">design-tokens.css · DESIGN.md · design-preview.html</div>
+  <div style="text-align:center; padding:var(--space-12) 0 var(--space-8); border-top:1px solid var(--border); margin-top:var(--space-12);">
+    <div style="font-size:var(--text-sm);color:var(--fg-muted);">πоток Design System · v2.0 · Semantic tokens · Dark + Light</div>
+    <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--fg-subtle);margin-top:var(--space-2);">design-tokens.css · DESIGN.md · design-preview.html</div>
   </div>
 
 </div>
+
+<script>
+function setTheme(theme, btn) {
+  document.documentElement.setAttribute('data-theme', theme);
+  document.querySelectorAll('.theme-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
 </body>
 </html>
