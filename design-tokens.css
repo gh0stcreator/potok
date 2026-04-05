@@ -1,6 +1,7 @@
 /**
  * πоток — Design Tokens
- * Dark theme. Version 1.0.
+ * Dark theme. Version 1.1.
+ * Source: Figma palette (rYGGvsw5L78w5B6osxk9t9)
  *
  * Usage: import this file once at the root of your app.
  * All tokens are CSS custom properties on :root.
@@ -10,22 +11,34 @@
 
   /* ─────────────────────────────────────────
      BRAND COLORS
-     The founder's palette, extended for UI.
+     From Figma identity file.
   ───────────────────────────────────────── */
 
   --color-brand-primary:       #20208B;   /* Deep blue — main identity */
-  --color-brand-primary-light: #2D2DC0;   /* Hover / active states */
+  --color-brand-primary-light: #2929B8;   /* Hover / active states */
   --color-brand-primary-dim:   #181870;   /* Pressed / subdued */
   --color-brand-primary-glow:  rgba(32, 32, 139, 0.24); /* Focus rings, halos */
 
-  --color-accent:              #EC4E20;   /* Orange — CTAs, critical data */
-  --color-accent-light:        #F5673A;   /* Hover on accent */
-  --color-accent-dim:          #C93D12;   /* Pressed accent */
-  --color-accent-glow:         rgba(236, 78, 32, 0.20); /* Accent emphasis */
+  --color-accent:              #FA683B;   /* Orange — CTAs, critical data */
+  --color-accent-light:        #FB7D55;   /* Hover on accent */
+  --color-accent-dim:          #E5522B;   /* Pressed accent */
+  --color-accent-glow:         rgba(250, 104, 59, 0.20); /* Accent emphasis */
 
-  --color-steel:               #C0D6DF;   /* Light blue — secondary elements */
-  --color-steel-dim:           #8AABBA;   /* Muted secondary */
-  --color-steel-fade:          rgba(192, 214, 223, 0.12); /* Subtle fills */
+
+  /* ─────────────────────────────────────────
+     NEUTRAL SCALE
+     8-step gray scale from Figma.
+     Used for backgrounds, text, borders.
+  ───────────────────────────────────────── */
+
+  --neutral-900: #0B0B0E;   /* Page background — near-black */
+  --neutral-800: #242628;   /* Sidebars, fixed panels */
+  --neutral-700: #3C3E41;   /* Cards, containers */
+  --neutral-600: #4E5258;   /* Popovers, overlays */
+  --neutral-500: #6B7079;   /* Disabled text, faint strokes */
+  --neutral-400: #A9ACB3;   /* Muted text, secondary labels */
+  --neutral-200: #F0F1F2;   /* Secondary text */
+  --neutral-100: #FBFBFB;   /* Primary text */
 
 
   /* ─────────────────────────────────────────
@@ -33,62 +46,63 @@
      Hierarchy from deepest to most elevated.
   ───────────────────────────────────────── */
 
-  --bg-base:     #000000;   /* Page background — true black */
-  --bg-elevated: #0A0A14;   /* Slightly raised — sidebars, headers */
-  --bg-surface:  #12121E;   /* Cards, panels, containers */
-  --bg-overlay:  #1A1A2E;   /* Modals, popovers, dropdowns */
-  --bg-hover:    rgba(192, 214, 223, 0.04); /* Interactive hover tint */
-  --bg-selected: rgba(32, 32, 139, 0.20);   /* Selected row / item */
+  --bg-base:     var(--neutral-900);   /* Page background */
+  --bg-elevated: var(--neutral-800);   /* Sidebars, headers */
+  --bg-surface:  var(--neutral-700);   /* Cards, panels */
+  --bg-overlay:  var(--neutral-600);   /* Modals, popovers, dropdowns */
+  --bg-hover:    rgba(169, 172, 179, 0.06);  /* Interactive hover tint */
+  --bg-selected: rgba(32, 32, 139, 0.20);    /* Selected row / item */
 
 
   /* ─────────────────────────────────────────
      TEXT
-     From primary content to decorative labels.
+     From neutral scale — top to bottom.
   ───────────────────────────────────────── */
 
-  --text-primary:   #FBFBFB;   /* Main content */
-  --text-secondary: #C0D6DF;   /* Labels, secondary info */
-  --text-muted:     #7A9BAA;   /* Hints, timestamps, placeholders */
-  --text-disabled:  #3D5566;   /* Disabled state */
-  --text-inverse:   #000000;   /* Text on light surfaces (rare) */
-  --text-accent:    #EC4E20;   /* Highlighted metric, alert text */
-  --text-brand:     #4A4AE0;   /* Link-style brand text */
+  --text-primary:   var(--neutral-100);   /* Main content */
+  --text-secondary: var(--neutral-200);   /* Labels, secondary info */
+  --text-muted:     var(--neutral-400);   /* Hints, timestamps, placeholders */
+  --text-disabled:  var(--neutral-500);   /* Disabled state */
+  --text-inverse:   var(--neutral-900);   /* Text on light surfaces (rare) */
+  --text-accent:    #FA683B;              /* Highlighted metric, alert text */
+  --text-brand:     #2929B8;             /* Link-style brand text */
 
 
   /* ─────────────────────────────────────────
      BORDERS
-     Defined as semi-transparent to work across surfaces.
+     Semi-transparent to work across surfaces.
   ───────────────────────────────────────── */
 
-  --border-subtle:  rgba(192, 214, 223, 0.06);  /* Barely visible dividers */
-  --border-default: rgba(192, 214, 223, 0.14);  /* Standard borders */
-  --border-strong:  rgba(192, 214, 223, 0.28);  /* Focused inputs, emphasis */
+  --border-subtle:  rgba(169, 172, 179, 0.06);  /* Barely visible dividers */
+  --border-default: rgba(169, 172, 179, 0.16);  /* Standard borders */
+  --border-strong:  rgba(169, 172, 179, 0.30);  /* Focused inputs, emphasis */
   --border-brand:   rgba(32, 32, 139, 0.60);    /* Brand-colored borders */
-  --border-accent:  rgba(236, 78, 32, 0.40);    /* Alert / accent borders */
+  --border-accent:  rgba(250, 104, 59, 0.40);   /* Alert / accent borders */
 
 
   /* ─────────────────────────────────────────
      STATUS COLORS
      Semantic utility layer for data states.
+     Source: Figma palette.
   ───────────────────────────────────────── */
 
   /* Success — growth, positive delta, healthy metrics */
-  --color-success:        #22C55E;
-  --color-success-light:  #4ADE80;
-  --color-success-bg:     rgba(34, 197, 94, 0.10);
-  --color-success-border: rgba(34, 197, 94, 0.24);
+  --color-success:        #5FC62F;
+  --color-success-light:  #72D949;
+  --color-success-bg:     rgba(95, 198, 47, 0.10);
+  --color-success-border: rgba(95, 198, 47, 0.24);
 
   /* Warning — approaching threshold, needs attention */
-  --color-warning:        #F59E0B;
-  --color-warning-light:  #FCD34D;
-  --color-warning-bg:     rgba(245, 158, 11, 0.10);
-  --color-warning-border: rgba(245, 158, 11, 0.24);
+  --color-warning:        #FBBF48;
+  --color-warning-light:  #FCC96A;
+  --color-warning-bg:     rgba(251, 191, 72, 0.10);
+  --color-warning-border: rgba(251, 191, 72, 0.24);
 
   /* Error — negative delta, broken flow, critical drop */
-  --color-error:        #EF4444;
-  --color-error-light:  #FCA5A5;
-  --color-error-bg:     rgba(239, 68, 68, 0.10);
-  --color-error-border: rgba(239, 68, 68, 0.24);
+  --color-error:        #E84064;
+  --color-error-light:  #EF6882;
+  --color-error-bg:     rgba(232, 64, 100, 0.10);
+  --color-error-border: rgba(232, 64, 100, 0.24);
 
   /* Info — neutral context, explanations, AI insights */
   --color-info:        #3B82F6;
@@ -102,18 +116,18 @@
      For charts, flows, funnels, and deltas.
   ───────────────────────────────────────── */
 
-  --data-positive:  #22C55E;   /* Money in, growth */
-  --data-negative:  #EF4444;   /* Money out, loss, drop */
-  --data-neutral:   #C0D6DF;   /* Baseline, unchanged */
-  --data-primary:   #4A4AE0;   /* Primary metric line */
-  --data-secondary: #EC4E20;   /* Secondary / compare line */
-  --data-tertiary:  #F59E0B;   /* Third series */
+  --data-positive:  #5FC62F;   /* Money in, growth */
+  --data-negative:  #E84064;   /* Money out, loss, drop */
+  --data-neutral:   #A9ACB3;   /* Baseline, unchanged */
+  --data-primary:   #2929B8;   /* Primary metric line */
+  --data-secondary: #FA683B;   /* Secondary / compare line */
+  --data-tertiary:  #FBBF48;   /* Third series */
 
   /* Flow visualization — gradient from loss to gain */
-  --flow-loss:     #C93D12;
-  --flow-friction: #F59E0B;
-  --flow-neutral:  #7A9BAA;
-  --flow-gain:     #22C55E;
+  --flow-loss:     #C4304F;
+  --flow-friction: #FBBF48;
+  --flow-neutral:  #6B7079;
+  --flow-gain:     #5FC62F;
 
 
   /* ─────────────────────────────────────────
