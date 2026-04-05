@@ -21,10 +21,10 @@
 
   /* Gray scale — from Figma */
   --_gray-0: #0B0B0E;   /* near-black */
-  --_gray-1: #242628;
-  --_gray-2: #4E5258;
-  --_gray-3: #6B7079;
-  --_gray-4: #A9ACB3;
+  --_gray-1: #171719;
+  --_gray-2: #4C4C50;
+  --_gray-3: #707076;
+  --_gray-4: #BFBFC1;
   --_gray-5: #FBFBFB;   /* near-white */
 
   /* Brand primitives */
@@ -53,8 +53,8 @@
 
   /* ── Surfaces (4 levels, darkest → most elevated) ── */
   --surface-page:    var(--_gray-0);   /* page canvas */
-  --surface-raised:  var(--_gray-1);   /* sidebar, header, nav */
-  --surface-card:    #3C3E41;          /* cards, panels, containers */
+  --surface-raised:  var(--_gray-1);      /* sidebar, header, nav */
+  --surface-card:    #323235;          /* cards, panels, containers */
   --surface-overlay: var(--_gray-2);   /* modals, popovers, menus */
 
   /* ── Foreground (3 levels) ── */
@@ -87,8 +87,8 @@
 
   /* ── Foreground ── */
   --fg-default: var(--_gray-0);   /* #0B0B0E — inverted from dark */
-  --fg-muted:   var(--_gray-2);   /* #4E5258 */
-  --fg-subtle:  var(--_gray-3);   /* #6B7079 */
+  --fg-muted:   var(--_gray-2);   /* #4C4C50 */
+  --fg-subtle:  var(--_gray-3);   /* #707076 */
 
   /* ── Border ── */
   --border:       rgba(11, 11, 14, 0.12);
