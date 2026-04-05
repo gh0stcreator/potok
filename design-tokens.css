@@ -1,0 +1,227 @@
+/**
+ * πоток — Design Tokens
+ * Dark theme. Version 1.0.
+ *
+ * Usage: import this file once at the root of your app.
+ * All tokens are CSS custom properties on :root.
+ */
+
+:root {
+
+  /* ─────────────────────────────────────────
+     BRAND COLORS
+     The founder's palette, extended for UI.
+  ───────────────────────────────────────── */
+
+  --color-brand-primary:       #20208B;   /* Deep blue — main identity */
+  --color-brand-primary-light: #2D2DC0;   /* Hover / active states */
+  --color-brand-primary-dim:   #181870;   /* Pressed / subdued */
+  --color-brand-primary-glow:  rgba(32, 32, 139, 0.24); /* Focus rings, halos */
+
+  --color-accent:              #EC4E20;   /* Orange — CTAs, critical data */
+  --color-accent-light:        #F5673A;   /* Hover on accent */
+  --color-accent-dim:          #C93D12;   /* Pressed accent */
+  --color-accent-glow:         rgba(236, 78, 32, 0.20); /* Accent emphasis */
+
+  --color-steel:               #C0D6DF;   /* Light blue — secondary elements */
+  --color-steel-dim:           #8AABBA;   /* Muted secondary */
+  --color-steel-fade:          rgba(192, 214, 223, 0.12); /* Subtle fills */
+
+
+  /* ─────────────────────────────────────────
+     BACKGROUND LAYERS
+     Hierarchy from deepest to most elevated.
+  ───────────────────────────────────────── */
+
+  --bg-base:     #000000;   /* Page background — true black */
+  --bg-elevated: #0A0A14;   /* Slightly raised — sidebars, headers */
+  --bg-surface:  #12121E;   /* Cards, panels, containers */
+  --bg-overlay:  #1A1A2E;   /* Modals, popovers, dropdowns */
+  --bg-hover:    rgba(192, 214, 223, 0.04); /* Interactive hover tint */
+  --bg-selected: rgba(32, 32, 139, 0.20);   /* Selected row / item */
+
+
+  /* ─────────────────────────────────────────
+     TEXT
+     From primary content to decorative labels.
+  ───────────────────────────────────────── */
+
+  --text-primary:   #FBFBFB;   /* Main content */
+  --text-secondary: #C0D6DF;   /* Labels, secondary info */
+  --text-muted:     #7A9BAA;   /* Hints, timestamps, placeholders */
+  --text-disabled:  #3D5566;   /* Disabled state */
+  --text-inverse:   #000000;   /* Text on light surfaces (rare) */
+  --text-accent:    #EC4E20;   /* Highlighted metric, alert text */
+  --text-brand:     #4A4AE0;   /* Link-style brand text */
+
+
+  /* ─────────────────────────────────────────
+     BORDERS
+     Defined as semi-transparent to work across surfaces.
+  ───────────────────────────────────────── */
+
+  --border-subtle:  rgba(192, 214, 223, 0.06);  /* Barely visible dividers */
+  --border-default: rgba(192, 214, 223, 0.14);  /* Standard borders */
+  --border-strong:  rgba(192, 214, 223, 0.28);  /* Focused inputs, emphasis */
+  --border-brand:   rgba(32, 32, 139, 0.60);    /* Brand-colored borders */
+  --border-accent:  rgba(236, 78, 32, 0.40);    /* Alert / accent borders */
+
+
+  /* ─────────────────────────────────────────
+     STATUS COLORS
+     Semantic utility layer for data states.
+  ───────────────────────────────────────── */
+
+  /* Success — growth, positive delta, healthy metrics */
+  --color-success:        #22C55E;
+  --color-success-light:  #4ADE80;
+  --color-success-bg:     rgba(34, 197, 94, 0.10);
+  --color-success-border: rgba(34, 197, 94, 0.24);
+
+  /* Warning — approaching threshold, needs attention */
+  --color-warning:        #F59E0B;
+  --color-warning-light:  #FCD34D;
+  --color-warning-bg:     rgba(245, 158, 11, 0.10);
+  --color-warning-border: rgba(245, 158, 11, 0.24);
+
+  /* Error — negative delta, broken flow, critical drop */
+  --color-error:        #EF4444;
+  --color-error-light:  #FCA5A5;
+  --color-error-bg:     rgba(239, 68, 68, 0.10);
+  --color-error-border: rgba(239, 68, 68, 0.24);
+
+  /* Info — neutral context, explanations, AI insights */
+  --color-info:        #3B82F6;
+  --color-info-light:  #93C5FD;
+  --color-info-bg:     rgba(59, 130, 246, 0.10);
+  --color-info-border: rgba(59, 130, 246, 0.24);
+
+
+  /* ─────────────────────────────────────────
+     DATA VISUALIZATION
+     For charts, flows, funnels, and deltas.
+  ───────────────────────────────────────── */
+
+  --data-positive:  #22C55E;   /* Money in, growth */
+  --data-negative:  #EF4444;   /* Money out, loss, drop */
+  --data-neutral:   #C0D6DF;   /* Baseline, unchanged */
+  --data-primary:   #4A4AE0;   /* Primary metric line */
+  --data-secondary: #EC4E20;   /* Secondary / compare line */
+  --data-tertiary:  #F59E0B;   /* Third series */
+
+  /* Flow visualization — gradient from loss to gain */
+  --flow-loss:     #C93D12;
+  --flow-friction: #F59E0B;
+  --flow-neutral:  #7A9BAA;
+  --flow-gain:     #22C55E;
+
+
+  /* ─────────────────────────────────────────
+     TYPOGRAPHY
+  ───────────────────────────────────────── */
+
+  --font-sans: 'Inter', 'Helvetica Neue', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', ui-monospace, monospace;
+
+  /* Scale */
+  --text-2xs:   0.625rem;   /*  10px — tiny labels, badges */
+  --text-xs:    0.75rem;    /*  12px — captions, metadata */
+  --text-sm:    0.875rem;   /*  14px — secondary text, table cells */
+  --text-base:  1rem;       /*  16px — body text */
+  --text-md:    1.125rem;   /*  18px — emphasized body */
+  --text-lg:    1.25rem;    /*  20px — card headers */
+  --text-xl:    1.5rem;     /*  24px — section headers */
+  --text-2xl:   1.875rem;   /*  30px — page titles */
+  --text-3xl:   2.25rem;    /*  36px — hero numbers */
+  --text-4xl:   3rem;       /*  48px — big KPIs, display */
+  --text-5xl:   3.75rem;    /*  60px — splash metrics */
+
+  /* Weight */
+  --weight-regular:   400;
+  --weight-medium:    500;
+  --weight-semibold:  600;
+  --weight-bold:      700;
+  --weight-black:     900;
+
+  /* Line height */
+  --leading-tight:   1.2;    /* Headings, numbers */
+  --leading-snug:    1.375;  /* Short labels */
+  --leading-normal:  1.5;    /* Body text */
+  --leading-relaxed: 1.625;  /* Long-form explanations */
+
+  /* Letter spacing */
+  --tracking-tight:   -0.02em;  /* Large headings */
+  --tracking-normal:   0em;     /* Default */
+  --tracking-wide:     0.04em;  /* Caps labels, badges */
+  --tracking-wider:    0.08em;  /* ALL CAPS tags */
+
+
+  /* ─────────────────────────────────────────
+     SPACING
+     4px base unit. Use multiples.
+  ───────────────────────────────────────── */
+
+  --space-1:   0.25rem;   /*  4px */
+  --space-2:   0.5rem;    /*  8px */
+  --space-3:   0.75rem;   /* 12px */
+  --space-4:   1rem;      /* 16px */
+  --space-5:   1.25rem;   /* 20px */
+  --space-6:   1.5rem;    /* 24px */
+  --space-8:   2rem;      /* 32px */
+  --space-10:  2.5rem;    /* 40px */
+  --space-12:  3rem;      /* 48px */
+  --space-16:  4rem;      /* 64px */
+  --space-20:  5rem;      /* 80px */
+  --space-24:  6rem;      /* 96px */
+
+
+  /* ─────────────────────────────────────────
+     BORDER RADIUS
+  ───────────────────────────────────────── */
+
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   16px;
+  --radius-2xl:  24px;
+  --radius-full: 9999px;
+
+
+  /* ─────────────────────────────────────────
+     SHADOWS
+     Subtle depth on dark surfaces.
+  ───────────────────────────────────────── */
+
+  --shadow-sm:  0 1px 3px rgba(0, 0, 0, 0.40);
+  --shadow-md:  0 4px 12px rgba(0, 0, 0, 0.50);
+  --shadow-lg:  0 8px 24px rgba(0, 0, 0, 0.60);
+  --shadow-xl:  0 16px 48px rgba(0, 0, 0, 0.70);
+  --shadow-brand: 0 0 0 3px var(--color-brand-primary-glow);
+  --shadow-accent: 0 0 0 3px var(--color-accent-glow);
+
+
+  /* ─────────────────────────────────────────
+     MOTION
+  ───────────────────────────────────────── */
+
+  --duration-fast:   100ms;
+  --duration-normal: 200ms;
+  --duration-slow:   350ms;
+  --ease-default:    cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-in:         cubic-bezier(0.4, 0, 1, 1);
+  --ease-out:        cubic-bezier(0, 0, 0.2, 1);
+  --ease-spring:     cubic-bezier(0.34, 1.56, 0.64, 1);
+
+
+  /* ─────────────────────────────────────────
+     Z-INDEX SCALE
+  ───────────────────────────────────────── */
+
+  --z-base:    0;
+  --z-raised:  10;
+  --z-sticky:  100;
+  --z-overlay: 200;
+  --z-modal:   300;
+  --z-toast:   400;
+
+}
