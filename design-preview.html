@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>πоток — Design System v2</title>
+  <title>πоток — Design System v3</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
@@ -170,16 +170,16 @@
       padding: 9px var(--space-4);
       border-radius: var(--radius-md);
       font-size: var(--text-sm);
-      font-weight: var(--weight-medium);
+      font-weight: var(--weight-semibold);
       border: none;
       cursor: pointer;
       font-family: var(--font-sans);
       transition: all var(--duration-fast) var(--ease);
     }
-    .btn-accent   { background: var(--accent); color: #fff; }
+    .btn-accent    { background: var(--accent); color: #fff; }
     .btn-accent:hover { background: var(--accent-hover); }
-    .btn-brand    { background: var(--brand); color: #fff; }
-    .btn-brand:hover  { background: var(--brand-hover); }
+    .btn-action    { background: var(--action); color: #fff; }
+    .btn-action:hover { background: var(--action-hover); }
     .btn-secondary { background: var(--surface-card); color: var(--fg-default); border: 1px solid var(--border); }
     .btn-secondary:hover { background: var(--surface-overlay); }
     .btn-ghost     { background: transparent; color: var(--fg-muted); }
@@ -247,7 +247,7 @@
     /* Input */
     .field label { display: block; font-size: var(--text-xs); font-weight: var(--weight-medium); letter-spacing: var(--tracking-caps); text-transform: uppercase; color: var(--fg-subtle); margin-bottom: var(--space-2); }
     .input { width: 100%; padding: 10px var(--space-4); background: var(--surface-raised); border: 1px solid var(--border); border-radius: var(--radius-md); color: var(--fg-default); font-family: var(--font-sans); font-size: var(--text-sm); outline: none; transition: border-color var(--duration-fast); }
-    .input:focus { border-color: var(--border-focus); box-shadow: var(--shadow-brand); }
+    .input:focus { border-color: var(--border-focus); box-shadow: var(--shadow-action); }
     .input::placeholder { color: var(--fg-subtle); }
 
     /* Type specimen */
@@ -277,55 +277,55 @@
   <div class="header">
     <div class="wordmark"><span class="wordmark-pi">π</span>оток</div>
     <div style="display:flex; justify-content:center;">
-      <span class="version-badge">Design System · v2.0 · Semantic</span>
+      <span class="version-badge">Design System · v3.0 · Semantic</span>
     </div>
   </div>
 
 
   <!-- GRAY SCALE -->
   <div class="section">
-    <div class="section-label">Нейтральная шкала — 6 значений (Figma)</div>
+    <div class="section-label">Нейтральная шкала — 6 значений (v3)</div>
     <div class="gray-bar">
       <div>
-        <div class="gray-cell-color" style="background:#0B0B0E;"></div>
+        <div class="gray-cell-color" style="background:#0A0A0A;"></div>
         <div class="gray-cell-label">
-          <span class="gray-cell-hex">#0B0B0E</span>
+          <span class="gray-cell-hex">#0A0A0A</span>
           <span class="gray-cell-use">gray-0</span>
         </div>
       </div>
       <div>
-        <div class="gray-cell-color" style="background:#242628;"></div>
+        <div class="gray-cell-color" style="background:#171717;"></div>
         <div class="gray-cell-label">
-          <span class="gray-cell-hex">#242628</span>
+          <span class="gray-cell-hex">#171717</span>
           <span class="gray-cell-use">gray-1</span>
         </div>
       </div>
       <div>
-        <div class="gray-cell-color" style="background:#4E5258;"></div>
+        <div class="gray-cell-color" style="background:#262626;"></div>
         <div class="gray-cell-label">
-          <span class="gray-cell-hex">#4E5258</span>
+          <span class="gray-cell-hex">#262626</span>
           <span class="gray-cell-use">gray-2</span>
         </div>
       </div>
       <div>
-        <div class="gray-cell-color" style="background:#6B7079;"></div>
+        <div class="gray-cell-color" style="background:#666666;"></div>
         <div class="gray-cell-label">
-          <span class="gray-cell-hex">#6B7079</span>
+          <span class="gray-cell-hex">#666666</span>
           <span class="gray-cell-use">gray-3</span>
         </div>
       </div>
       <div>
-        <div class="gray-cell-color" style="background:#A9ACB3;"></div>
-        <div class="gray-cell-label" style="color:#3C3E41;">
-          <span class="gray-cell-hex" style="color:#3C3E41;">#A9ACB3</span>
-          <span class="gray-cell-use" style="color:#4E5258;">gray-4</span>
+        <div class="gray-cell-color" style="background:#A0A0A0;"></div>
+        <div class="gray-cell-label" style="color:#262626;">
+          <span class="gray-cell-hex" style="color:#262626;">#A0A0A0</span>
+          <span class="gray-cell-use" style="color:#444;">gray-4</span>
         </div>
       </div>
       <div>
-        <div class="gray-cell-color" style="background:#FBFBFB;"></div>
-        <div class="gray-cell-label" style="color:#3C3E41;">
-          <span class="gray-cell-hex" style="color:#3C3E41;">#FBFBFB</span>
-          <span class="gray-cell-use" style="color:#4E5258;">gray-5</span>
+        <div class="gray-cell-color" style="background:#FAFAFA;"></div>
+        <div class="gray-cell-label" style="color:#262626;">
+          <span class="gray-cell-hex" style="color:#262626;">#FAFAFA</span>
+          <span class="gray-cell-use" style="color:#444;">gray-5</span>
         </div>
       </div>
     </div>
@@ -345,28 +345,28 @@
               <div class="surface-label">--surface-page</div>
               <div class="surface-meta">Фон страницы</div>
             </div>
-            <div class="surface-meta" id="page-val">dark: #0B0B0E</div>
+            <div class="surface-meta" id="page-val">dark: #0A0A0A</div>
           </div>
           <div class="surface-row" style="background:var(--surface-raised);">
             <div>
               <div class="surface-label">--surface-raised</div>
               <div class="surface-meta">Сайдбар, хедер</div>
             </div>
-            <div class="surface-meta" id="raised-val">dark: #242628</div>
+            <div class="surface-meta" id="raised-val">dark: #171717</div>
           </div>
           <div class="surface-row" style="background:var(--surface-card);">
             <div>
               <div class="surface-label">--surface-card</div>
               <div class="surface-meta">Карточки, панели</div>
             </div>
-            <div class="surface-meta">dark: #3C3E41</div>
+            <div class="surface-meta">dark: #1C212E</div>
           </div>
           <div class="surface-row" style="background:var(--surface-overlay);">
             <div>
               <div class="surface-label">--surface-overlay</div>
               <div class="surface-meta">Модалки, поповеры</div>
             </div>
-            <div class="surface-meta">dark: #4E5258</div>
+            <div class="surface-meta">dark: #262626</div>
           </div>
         </div>
       </div>
@@ -458,31 +458,31 @@
     <div class="section-label">Статусные цвета — функциональные</div>
     <div class="col4" style="margin-bottom:var(--space-5);">
       <div class="swatch">
-        <div class="swatch-chip" style="background:#5FC62F;"></div>
+        <div class="swatch-chip" style="background:#66DC7E;"></div>
         <div class="swatch-info">
           <div class="swatch-name">--color-success</div>
-          <div class="swatch-val">#5FC62F · Рост</div>
+          <div class="swatch-val">#66DC7E · Рост</div>
         </div>
       </div>
       <div class="swatch">
-        <div class="swatch-chip" style="background:#FBBF48;"></div>
+        <div class="swatch-chip" style="background:#DAB33C;"></div>
         <div class="swatch-info">
           <div class="swatch-name">--color-warning</div>
-          <div class="swatch-val">#FBBF48 · Внимание</div>
+          <div class="swatch-val">#DAB33C · Внимание</div>
         </div>
       </div>
       <div class="swatch">
-        <div class="swatch-chip" style="background:#E84064;"></div>
+        <div class="swatch-chip" style="background:#E64341;"></div>
         <div class="swatch-info">
           <div class="swatch-name">--color-error</div>
-          <div class="swatch-val">#E84064 · Потеря</div>
+          <div class="swatch-val">#E64341 · Потеря</div>
         </div>
       </div>
       <div class="swatch">
-        <div class="swatch-chip" style="background:#3B82F6;"></div>
+        <div class="swatch-chip" style="background:#447DF7;"></div>
         <div class="swatch-info">
           <div class="swatch-name">--color-info</div>
-          <div class="swatch-val">#3B82F6 · AI, контекст</div>
+          <div class="swatch-val">#447DF7 · AI, контекст</div>
         </div>
       </div>
     </div>
@@ -602,7 +602,7 @@
     <div class="section-label">Кнопки</div>
     <div class="row">
       <button class="btn btn-accent">Загрузить данные</button>
-      <button class="btn btn-brand">Подключить источник</button>
+      <button class="btn btn-action">Подключить источник</button>
       <button class="btn btn-secondary">Экспорт</button>
       <button class="btn btn-ghost">Отмена</button>
       <button class="btn btn-danger">Удалить</button>
@@ -638,7 +638,7 @@
 
   <!-- FOOTER -->
   <div style="text-align:center; padding:var(--space-12) 0 var(--space-8); border-top:1px solid var(--border); margin-top:var(--space-12);">
-    <div style="font-size:var(--text-sm);color:var(--fg-muted);">πоток Design System · v2.0 · Semantic tokens · Dark + Light</div>
+    <div style="font-size:var(--text-sm);color:var(--fg-muted);">πоток Design System · v3.0 · Semantic tokens · Dark + Light</div>
     <div style="font-family:var(--font-mono);font-size:var(--text-xs);color:var(--fg-subtle);margin-top:var(--space-2);">design-tokens.css · DESIGN.md · design-preview.html</div>
   </div>
 
