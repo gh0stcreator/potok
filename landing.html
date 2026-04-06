@@ -291,8 +291,11 @@ footer a{color:var(--t2)}
   <div class="container">
     <h2>Узнайте, куда уходят деньги</h2>
     <p>Первый анализ бесплатно. Без карты. 5 минут — и вы видите свой бизнес целиком.</p>
-    <form class="email-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="waitlist-form">
-      <p style="display:none"><input name="bot-field"></p>
+    <form class="email-form" id="waitlist-form" action="https://formsubmit.co/potok.waitlist@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="πоток waitlist">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://gh0stcreator.github.io/potok/landing.html#thankyou">
+      <input type="text" name="_honey" style="display:none">
       <input type="email" name="email" placeholder="Ваш email" required>
       <button type="submit" class="btn-primary">Начать бесплатно</button>
     </form>
@@ -315,14 +318,12 @@ document.querySelectorAll('.faq-q').forEach(q=>{
   });
 });
 
-const form=document.getElementById('waitlist-form');
-if(form){form.addEventListener('submit',function(e){
-  e.preventDefault();
-  const data=new FormData(form);
-  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()})
-  .then(()=>{form.style.display='none';document.getElementById('form-success').style.display='block'})
-  .catch(()=>{form.style.display='none';document.getElementById('form-success').style.display='block'});
-})}
+if(window.location.hash==='#thankyou'){
+  const f=document.getElementById('waitlist-form');
+  const s=document.getElementById('form-success');
+  if(f)f.style.display='none';
+  if(s)s.style.display='block';
+}
 </script>
 </body>
 </html>
