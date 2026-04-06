@@ -172,6 +172,7 @@ body.aside-collapsed .sb-reopen{display:flex}
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:100;align-items:center;justify-content:center}
 .modal-bg.open{display:flex}
 .modal{background:var(--s2);border:.5px solid var(--b2);border-radius:8px;padding:16px;min-width:240px}
+.modal.theme-modal{max-width:380px;width:90vw;max-height:80vh;overflow-y:auto;padding:16px 18px}
 .modal-title{font-size:16px;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;letter-spacing:-.01em}
 .modal-x{cursor:pointer;color:var(--t2)}
 .head-icon-btn{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;cursor:pointer;color:var(--t2);background:transparent;border:.5px solid var(--b1);font-size:12px;flex:0 0 auto}
@@ -732,6 +733,7 @@ function renderChanInfo(D){
         <div style="width:9px;height:9px;border-radius:50%;background:var(--t3)"></div>
         <span style="font-size:13px;font-weight:500;color:var(--t2)">Основные показатели</span>
       </div>
+      <button class="head-icon-btn" onclick="openThemeModal()" title="Настройка темы">🎨</button>
 `;
     el.style.display='none';
     gv.style.display='';
@@ -745,6 +747,7 @@ function renderChanInfo(D){
         <div style="width:9px;height:9px;border-radius:50%;background:var(--t3)"></div>
         <span style="font-size:13px;font-weight:500;color:var(--t2)">Основные показатели</span>
       </div>
+      <button class="head-icon-btn" onclick="openThemeModal()" title="Настройка темы">🎨</button>
 `;
     el.style.display='none';
     gv.style.display='';
@@ -763,7 +766,10 @@ function renderChanInfo(D){
       <div style="width:9px;height:9px;border-radius:50%;background:${col}"></div>
       <span style="font-size:13px;font-weight:500;color:${col}">${chName}</span>
     </div>
-    <button class="ci-reset" onclick="selCh=null;go()">✕ закрыть</button>`;
+    <div style="display:flex;align-items:center;gap:6px">
+      <button class="head-icon-btn" onclick="openThemeModal()" title="Настройка темы">🎨</button>
+      <button class="ci-reset" onclick="selCh=null;go()">✕ закрыть</button>
+    </div>`;
   el.innerHTML=`
     <div class="stat-bar">
       ${sc('Спенд',fR(cd.spend))}
@@ -818,9 +824,6 @@ function renderSidebar(D){
 
   addSection('Воронка');
   addHtml(`<div id="step-ck-list"></div>`);
-
-  addSection('Тема');
-  addNode(renderThemePanel());
 
   sb.appendChild(cfg.el);
   renderStepCk();
@@ -2041,6 +2044,13 @@ function openGrpModal(){renderGrpCk();document.getElementById('grp-modal-bg').cl
 function renderGrpCk(){document.getElementById('grp-ck-list').innerHTML=GRP_DISP.map(o=>`<div class="ck-row" onclick="grpDispOn['${o.id}']=!grpDispOn['${o.id}'];renderGrpCk();go()"><div class="ck-box${grpDispOn[o.id]?' on':''}">${grpDispOn[o.id]?'✓':''}</div><span class="ck-lbl">${o.label}</span></div>`).join('');}
 function closeGrpModal(){document.getElementById('grp-modal-bg').classList.remove('open');}
 function closeModal(){document.getElementById('modal-bg').classList.remove('open');}
+function openThemeModal(){
+  const container=document.getElementById('theme-modal-body');
+  container.innerHTML='';
+  container.appendChild(renderThemePanel());
+  document.getElementById('theme-modal-bg').classList.add('open');
+}
+function closeThemeModal(){document.getElementById('theme-modal-bg').classList.remove('open');}
 function renderStepCk(){
   const el=document.getElementById('step-ck-list');
   if(!el)return;
@@ -2120,5 +2130,6 @@ function go(keepSb){
 
 window.addEventListener('load',()=>{go();initFooterArt();});
 </script>
-<div class="modal-bg" id="grp-modal-bg" onclick="if(event.target===this)closeGrpModal()"><div class="modal"><div class="modal-title">Показывать у группы <span class="modal-x" onclick="closeGrpModal()">✕</span></div><div id="grp-ck-list"></div><button class="add-btn" style="margin-top:6px" onclick="closeGrpModal()">Готово</button></div></div></body>
+<div class="modal-bg" id="grp-modal-bg" onclick="if(event.target===this)closeGrpModal()"><div class="modal"><div class="modal-title">Показывать у группы <span class="modal-x" onclick="closeGrpModal()">✕</span></div><div id="grp-ck-list"></div><button class="add-btn" style="margin-top:6px" onclick="closeGrpModal()">Готово</button></div></div>
+<div class="modal-bg" id="theme-modal-bg" onclick="if(event.target===this)closeThemeModal()"><div class="modal theme-modal"><div class="modal-title">Настройка темы <span class="modal-x" onclick="closeThemeModal()">✕</span></div><div id="theme-modal-body"></div></div></div></body>
 </html>
