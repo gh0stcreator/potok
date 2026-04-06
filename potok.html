@@ -174,15 +174,6 @@ body.aside-collapsed .sb-reopen{display:flex}
 .modal{background:var(--s2);border:.5px solid var(--b2);border-radius:8px;padding:16px;min-width:240px}
 .modal-title{font-size:16px;font-weight:700;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;letter-spacing:-.01em}
 .modal-x{cursor:pointer;color:var(--t2)}
-.help-modal{width:min(640px,calc(100vw - 32px));min-width:420px;padding:18px}
-.help-body{display:flex;flex-direction:column;gap:14px;color:var(--t2);font-size:13px;line-height:1.6}
-.help-lead{padding:16px 18px;background:linear-gradient(180deg,rgba(88,166,255,.08),rgba(88,166,255,.02));border:.5px solid rgba(88,166,255,.18);border-radius:10px;color:var(--t1);font-size:15px;line-height:1.55;font-weight:600}
-.help-body strong{color:var(--t1);font-weight:600}
-.help-list{display:flex;flex-direction:column;gap:10px}
-.help-item{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:var(--s1);border:.5px solid var(--b1);border-radius:8px}
-.help-num{width:22px;flex:0 0 22px;color:var(--acc);font-family:var(--mono);font-size:12px;font-weight:700;line-height:1.4}
-.help-item-title{display:block;color:var(--t1);font-size:13px;font-weight:600;line-height:1.35;margin-bottom:4px}
-.help-chain{display:block;margin-top:6px;padding:8px 10px;border-radius:6px;background:rgba(66,178,252,.06);border:.5px solid rgba(66,178,252,.12);color:var(--t1);font-family:var(--mono);font-size:11px;line-height:1.45}
 .head-icon-btn{width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:999px;cursor:pointer;color:var(--t2);background:transparent;border:.5px solid var(--b1);font-size:12px;flex:0 0 auto}
 .head-icon-btn:hover{color:var(--t1);background:var(--s2)}
 .ck-row{display:flex;align-items:center;gap:8px;margin-bottom:8px;cursor:pointer;user-select:none}
@@ -348,20 +339,6 @@ body.aside-collapsed .sb-reopen{display:flex}
     <div class="modal-title">Метрики в свёрнутом канале <span class="modal-x" onclick="closeModal()">✕</span></div>
     <div id="ck-list"></div>
     <button class="add-btn" style="margin-top:6px" onclick="closeModal()">Готово</button>
-  </div>
-</div>
-<div class="modal-bg" id="help-modal-bg" onclick="if(event.target===this)closeHelp()">
-  <div class="modal help-modal">
-    <div class="modal-title">Как пользоваться <span class="modal-x" onclick="closeHelp()">✕</span></div>
-    <div class="help-body">
-      <div class="help-lead">πоток показывает путь от охватов до клиентов и считает экономику на каждом шаге.</div>
-      <div class="help-list">
-        <div class="help-item"><span class="help-num">1.</span><div><span class="help-item-title">Настройки слева</span>Задайте рынок, конверсии и параметры каналов. Пустое поле — берётся общее значение.</div></div>
-        <div class="help-item"><span class="help-num">2.</span><div><span class="help-item-title">Главный экран</span>Вся цепочка:<span class="help-chain">TAM → SAM → SOM → Охваты → Посетители → Лиды → Записи → Клиенты → Отток</span>Смотрите, где сужение — там теряются клиенты и деньги.</div></div>
-        <div class="help-item"><span class="help-num">3.</span><div><span class="help-item-title">Клик по каналу</span>Детали: конверсии, стоимость, итоговая экономика. Понимаете, что масштабируется, а что нет.</div></div>
-        <div class="help-item"><span class="help-num">4.</span><div><span class="help-item-title">Спросите себя</span>Что изменить, чтобы выручка выросла? Поменяйте параметр и посмотрите эффект на всю систему.</div></div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -755,7 +732,7 @@ function renderChanInfo(D){
         <div style="width:9px;height:9px;border-radius:50%;background:var(--t3)"></div>
         <span style="font-size:13px;font-weight:500;color:var(--t2)">Основные показатели</span>
       </div>
-      <button class="head-icon-btn" onclick="openHelp()" title="Как пользоваться">ⓘ</button>`;
+`;
     el.style.display='none';
     gv.style.display='';
     el.innerHTML='';
@@ -768,7 +745,7 @@ function renderChanInfo(D){
         <div style="width:9px;height:9px;border-radius:50%;background:var(--t3)"></div>
         <span style="font-size:13px;font-weight:500;color:var(--t2)">Основные показатели</span>
       </div>
-      <button class="head-icon-btn" onclick="openHelp()" title="Как пользоваться">ⓘ</button>`;
+`;
     el.style.display='none';
     gv.style.display='';
     el.innerHTML='';
@@ -2064,8 +2041,6 @@ function openGrpModal(){renderGrpCk();document.getElementById('grp-modal-bg').cl
 function renderGrpCk(){document.getElementById('grp-ck-list').innerHTML=GRP_DISP.map(o=>`<div class="ck-row" onclick="grpDispOn['${o.id}']=!grpDispOn['${o.id}'];renderGrpCk();go()"><div class="ck-box${grpDispOn[o.id]?' on':''}">${grpDispOn[o.id]?'✓':''}</div><span class="ck-lbl">${o.label}</span></div>`).join('');}
 function closeGrpModal(){document.getElementById('grp-modal-bg').classList.remove('open');}
 function closeModal(){document.getElementById('modal-bg').classList.remove('open');}
-function openHelp(){document.getElementById('help-modal-bg').classList.add('open');}
-function closeHelp(){document.getElementById('help-modal-bg').classList.remove('open');}
 function renderStepCk(){
   const el=document.getElementById('step-ck-list');
   if(!el)return;
