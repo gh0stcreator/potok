@@ -6,6 +6,9 @@
 <title>πоток — Финансовая картина малого бизнеса за 5 минут</title>
 <meta name="description" content="AI-аналитика для малого бизнеса. Узнайте, где ваш бизнес теряет деньги — без аналитика, за 5 минут.">
 <link rel="icon" type="image/svg+xml" href='data:image/svg+xml;utf8,<svg width="32" height="29" viewBox="0 0 32 29" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M32 27.8931C31.2071 28.2621 30.433 28.5388 29.6779 28.7233C28.9605 28.9078 28.1676 29 27.2991 29C26.0531 29 25.0525 28.8155 24.2973 28.4466C23.5422 28.0776 22.9569 27.5795 22.5416 26.9523C22.164 26.2882 21.9186 25.5134 21.8053 24.6279C21.692 23.7424 21.6354 22.8015 21.6354 21.8053V5.31298H9.68496V28.6126H3.9646V5.31298H0V0H31.8301V5.31298H27.3558V20.9752C27.3558 21.381 27.3558 21.7869 27.3558 22.1927C27.3935 22.5617 27.4879 22.9122 27.6389 23.2443C27.79 23.5394 27.9976 23.7793 28.2619 23.9637C28.564 24.1482 28.9794 24.2405 29.508 24.2405C30.3009 24.2405 31.1316 24.056 32 23.687V27.8931Z" fill="%23BFBFC1"/></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#0B0B0E;--s1:#171719;--s2:#242426;--s3:#323235;
@@ -14,8 +17,8 @@
   --orange:#FA683B;--orange-hover:#FB7D55;
   --border:rgba(76,76,80,.72);
   --rad:8px;
-  --font:-apple-system,'Inter','Segoe UI',sans-serif;
-  --mono:'Courier New','JetBrains Mono',monospace;
+  --font:'Inter',-apple-system,'Segoe UI',sans-serif;
+  --mono:'JetBrains Mono','Courier New',monospace;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -33,13 +36,13 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .nav-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:var(--t1);letter-spacing:-.02em}
 .nav-logo svg{width:24px;height:22px}
 .nav-logo svg path{fill:var(--t2)}
-.nav-cta{background:var(--acc);color:#fff;padding:8px 20px;border-radius:999px;font-size:14px;font-weight:600;border:none;cursor:pointer;transition:background .15s}
-.nav-cta:hover{background:var(--acc-hover);color:#fff}
+.nav-cta{background:transparent;color:var(--t1);padding:7px 18px;border-radius:999px;font-size:14px;font-weight:500;border:.5px solid var(--border);cursor:pointer;transition:all .15s}
+.nav-cta:hover{border-color:var(--t3);color:var(--t1);background:rgba(255,255,255,.04)}
 
 /* Hero */
 .hero{padding:160px 0 100px;text-align:center}
 .hero-badge{display:inline-block;padding:6px 16px;border-radius:999px;background:rgba(68,125,247,.12);border:.5px solid rgba(68,125,247,.28);color:var(--acc);font-size:13px;font-weight:600;margin-bottom:24px;letter-spacing:.02em}
-.hero h1{font-size:clamp(32px,5vw,52px);font-weight:800;line-height:1.15;letter-spacing:-.03em;margin-bottom:20px;max-width:720px;margin-left:auto;margin-right:auto}
+.hero h1{font-size:clamp(28px,4.5vw,46px);font-weight:700;line-height:1.18;letter-spacing:-.025em;margin-bottom:20px;max-width:680px;margin-left:auto;margin-right:auto}
 .hero p{font-size:clamp(16px,2vw,20px);color:var(--t2);max-width:580px;margin:0 auto 36px;line-height:1.6}
 .hero-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
 .btn-primary{background:var(--orange);color:#fff;padding:14px 32px;border-radius:999px;font-size:16px;font-weight:700;border:none;cursor:pointer;transition:background .15s,box-shadow .15s}
@@ -56,20 +59,21 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .benefits{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
 .benefit{background:var(--s1);border:.5px solid var(--border);border-radius:12px;padding:28px 24px}
 .benefit-icon{width:40px;height:40px;border-radius:10px;background:rgba(68,125,247,.12);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:16px}
-.benefit h3{font-size:17px;font-weight:700;margin-bottom:8px;line-height:1.3}
+.benefit h3{font-size:15px;font-weight:600;margin-bottom:8px;line-height:1.35}
 .benefit p{color:var(--t2);font-size:14px;line-height:1.6}
 
 /* Section headers */
 .sh{text-align:center;margin-bottom:48px}
 .sh-label{font-family:var(--mono);font-size:11px;color:var(--t3);text-transform:uppercase;letter-spacing:.12em;margin-bottom:8px}
-.sh h2{font-size:clamp(24px,3.5vw,36px);font-weight:800;letter-spacing:-.02em}
+.sh h2{font-size:clamp(22px,3vw,32px);font-weight:700;letter-spacing:-.02em}
 .sh p{color:var(--t2);font-size:16px;margin-top:12px;max-width:520px;margin-left:auto;margin-right:auto}
 
 /* Steps */
 .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;counter-reset:step}
 .step{position:relative;background:var(--s1);border:.5px solid var(--border);border-radius:12px;padding:28px 24px;counter-increment:step}
-.step::before{content:counter(step);position:absolute;top:24px;right:24px;font-family:var(--mono);font-size:32px;font-weight:900;color:rgba(68,125,247,.15)}
-.step h4{font-size:15px;font-weight:700;margin-bottom:8px;color:var(--acc)}
+.step-num{font-family:var(--mono);font-size:11px;font-weight:500;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:12px}
+.step-num::before{content:counter(step,decimal-leading-zero)}
+.step h4{font-size:15px;font-weight:600;margin-bottom:8px;color:var(--t1)}
 .step p{color:var(--t2);font-size:14px;line-height:1.6}
 
 /* Pricing */
@@ -78,7 +82,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .price-card.featured{border-color:var(--acc);position:relative}
 .price-card.featured::after{content:'Популярный';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--acc);color:#fff;font-size:11px;font-weight:700;padding:4px 14px;border-radius:999px;letter-spacing:.04em}
 .price-name{font-size:14px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px}
-.price-amount{font-size:36px;font-weight:800;letter-spacing:-.02em}
+.price-amount{font-family:var(--mono);font-size:32px;font-weight:700;letter-spacing:-.01em}
 .price-amount span{font-size:14px;font-weight:400;color:var(--t3)}
 .price-desc{color:var(--t2);font-size:14px;margin:12px 0 20px;line-height:1.5}
 .price-features{list-style:none;margin-bottom:24px;flex:1}
@@ -101,7 +105,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 
 /* CTA bottom */
 .cta-bottom{text-align:center;background:linear-gradient(180deg,transparent,rgba(68,125,247,.04));border-top:.5px solid var(--border);padding:80px 0}
-.cta-bottom h2{font-size:clamp(24px,4vw,40px);font-weight:800;letter-spacing:-.02em;margin-bottom:16px}
+.cta-bottom h2{font-size:clamp(22px,3.5vw,36px);font-weight:700;letter-spacing:-.02em;margin-bottom:16px}
 .cta-bottom p{color:var(--t2);font-size:17px;margin-bottom:32px;max-width:480px;margin-left:auto;margin-right:auto}
 
 /* Footer */
@@ -129,14 +133,14 @@ footer a{color:var(--t2)}
 
 <section class="hero">
   <div class="container">
-    <div class="hero-badge">AI-аналитика для малого бизнеса</div>
+    <div class="hero-badge">Бесплатно · 5 минут · Без настроек</div>
     <h1>Три места, где ваш бизнес теряет деньги. Узнайте за 5 минут.</h1>
     <p>Бот ведёт вас по вопросам. В конце — визуальная карта вашего бизнеса с точками потерь и цифрами.</p>
     <div class="hero-actions">
       <a href="potok.html" class="btn-primary">Узнать, где уходят деньги</a>
       <a href="#how" class="btn-secondary">Как это работает</a>
     </div>
-    <div class="hero-meta">Бесплатно · Без карты · 5 минут</div>
+    <div class="hero-meta">Первый анализ полностью бесплатно — без карты</div>
   </div>
 </section>
 
@@ -185,18 +189,22 @@ footer a{color:var(--t2)}
     </div>
     <div class="steps">
       <div class="step">
+        <div class="step-num"></div>
         <h4>Ниша</h4>
         <p>Бот спрашивает о вашей сфере. Подтягивает бенчмарки по рынку — сразу видно, где вы относительно других.</p>
       </div>
       <div class="step">
+        <div class="step-num"></div>
         <h4>Базовая экономика</h4>
         <p>Выручка, расходы, клиенты, стоимость привлечения — 4–6 цифр. Больше не нужно.</p>
       </div>
       <div class="step">
+        <div class="step-num"></div>
         <h4>Карта бизнеса</h4>
         <p>πоток строит визуальную схему: воронка, ROI, юнит-экономика. Один экран — вся модель.</p>
       </div>
       <div class="step">
+        <div class="step-num"></div>
         <h4>Точки потерь</h4>
         <p>Три конкретных места, где уходят деньги. С цифрами. С объяснением, почему именно там.</p>
       </div>
