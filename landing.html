@@ -83,7 +83,8 @@ nav .container{display:flex;align-items:center;justify-content:space-between}
 .price-desc{color:var(--t2);font-size:14px;margin:12px 0 20px;line-height:1.5}
 .price-features{list-style:none;margin-bottom:24px;flex:1}
 .price-features li{padding:6px 0;font-size:14px;color:var(--t2);border-bottom:.5px solid rgba(76,76,80,.3)}
-.price-features li::before{content:'✓ ';color:var(--acc)}
+.price-features li{padding-left:20px;position:relative}
+.price-features li::before{content:'';position:absolute;left:0;top:10px;width:8px;height:4px;border-left:1.5px solid var(--acc);border-bottom:1.5px solid var(--acc);transform:rotate(-45deg)}
 .price-btn{display:block;text-align:center;padding:12px;border-radius:999px;font-weight:600;font-size:14px;border:.5px solid var(--border);color:var(--t1);cursor:pointer;transition:all .15s;background:transparent}
 .price-btn:hover{border-color:var(--acc);color:var(--acc)}
 .price-card.featured .price-btn{background:var(--acc);border-color:var(--acc);color:#fff}
@@ -153,22 +154,22 @@ footer a{color:var(--t2)}
     </div>
     <div class="benefits">
       <div class="benefit">
-        <div class="benefit-icon">💰</div>
-        <h3>Аналитик стоит 100К в месяц. πоток — нет.</h3>
+        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Аналитик стоит 100К в месяц. поток — нет.</h3>
         <p>Загрузки, настройки, технари не нужны. Вводите цифры, которые уже знаете. Получаете ответ.</p>
       </div>
       <div class="benefit">
-        <div class="benefit-icon">📍</div>
-        <h3>Не «оптимизируйте расходы». А «вот здесь уходит 180К».</h3>
+        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div>
+        <h3>Не "оптимизируйте расходы". А "вот здесь уходит 180К".</h3>
         <p>AI анализирует вашу модель и показывает три конкретные точки потерь — с цифрами и объяснением.</p>
       </div>
       <div class="benefit">
-        <div class="benefit-icon">📊</div>
-        <h3>Excel собирает цифры. πоток даёт ответ.</h3>
-        <p>Выручка, расходы, клиенты — 4–6 цифр. Этого хватает, чтобы увидеть воронку, ROI и сравнение с нишей.</p>
+        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg></div>
+        <h3>Excel собирает цифры. поток даёт ответ.</h3>
+        <p>Выручка, расходы, клиенты — 4-6 цифр. Этого хватает, чтобы увидеть воронку, ROI и сравнение с нишей.</p>
       </div>
       <div class="benefit">
-        <div class="benefit-icon">📈</div>
+        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--acc)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
         <h3>Вернитесь через месяц — увидите, что изменилось.</h3>
         <p>Данные хранятся в личном кабинете. Обновляйте цифры — следите за динамикой без новых настроек.</p>
       </div>
