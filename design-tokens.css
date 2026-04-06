@@ -1,5 +1,5 @@
 /**
- * πоток — Design Tokens v3.0
+ * πоток — Design Tokens v3.1
  *
  * Structure:
  *   - Primitive scale  (raw values, never use directly in components)
@@ -7,7 +7,18 @@
  *   - Typography / spacing / motion / radius / z-index
  *
  * Themes: dark (default) + light via [data-theme="light"]
- * Source: Figma rYGGvsw5L78w5B6osxk9t9 + UI reference sync v3
+ * Source: Figma rYGGvsw5L78w5B6osxk9t9 + potok.html audit (commit d2490f5)
+ *
+ * v3.1 changes (synced to actual product):
+ *   - Gray scale updated to cool-tinted values (subtle violet undertone)
+ *   - fg-muted: #A0A0A0 → #BFBFC1 (lighter, matches product text hierarchy)
+ *   - Status colors: success #62B762, warning #FFC154, error #ED4B39
+ *   - Border tokens: absolute cool-gray approach (more visible than white-overlay)
+ *   - surface-card now equals surface-raised (no separate navy-tint level in product)
+ *   - New: --surface-elevated, --fg-section
+ *
+ * Note: product currently uses --acc (#20208B, brand) for interactive elements.
+ *   Design system promotes --action (#447DF7) for interactive — product to be migrated.
  */
 
 
@@ -18,13 +29,15 @@
 
 :root {
 
-  /* Gray scale — neutral, no tint */
-  --_gray-0: #0A0A0A;   /* near-black */
-  --_gray-1: #171717;
-  --_gray-2: #262626;
-  --_gray-3: #666666;
-  --_gray-4: #A0A0A0;
-  --_gray-5: #FAFAFA;   /* near-white */
+  /* Gray scale — cool-tinted (subtle violet/blue undertone, sourced from potok.html) */
+  --_gray-0: #0B0B0E;   /* near-black */
+  --_gray-1: #171719;
+  --_gray-2: #242426;
+  --_gray-2b: #323235;  /* hover/drag-over surface — elevated interactive state */
+  --_gray-3: #707076;   /* subtle — cool violet tint */
+  --_gray-3b: #8A8A8A;  /* section titles, mid-range labels */
+  --_gray-4: #BFBFC1;
+  --_gray-5: #FBFBFB;   /* near-white */
 
   /* Brand primitives */
   --_blue:         #20208B;   /* brand identity */
@@ -38,10 +51,10 @@
   --_orange-lt:  #FB7D55;
   --_orange-dim: #E5522B;
 
-  /* Status primitives */
-  --_green:  #66DC7E;   /* success */
-  --_amber:  #DAB33C;   /* warning */
-  --_red:    #E64341;   /* error */
+  /* Status primitives — sourced from potok.html */
+  --_green:  #62B762;   /* success — muted, earthy green */
+  --_amber:  #FFC154;   /* warning — warm golden */
+  --_red:    #ED4B39;   /* error — warm red-orange */
 
 }
 
@@ -54,19 +67,21 @@
 [data-theme="dark"] {
 
   /* ── Surfaces (4 levels, darkest → most elevated) ── */
-  --surface-page:    var(--_gray-0);   /* #0A0A0A — page canvas */
-  --surface-raised:  var(--_gray-1);   /* #171717 — sidebar, nav, panels */
-  --surface-card:    #1C212E;          /* navy tint — cards, rows, containers */
-  --surface-overlay: var(--_gray-2);   /* #262626 — modals, popovers, menus */
+  --surface-page:     var(--_gray-0);    /* #0B0B0E — page canvas */
+  --surface-raised:   var(--_gray-1);    /* #171719 — sidebar, nav, panels, cards */
+  --surface-card:     var(--_gray-1);    /* #171719 — same as raised; product uses one card level */
+  --surface-overlay:  var(--_gray-2);    /* #242426 — modals, popovers, menus */
+  --surface-elevated: var(--_gray-2b);   /* #323235 — hover/drag-over states */
 
-  /* ── Foreground (3 levels) ── */
-  --fg-default: var(--_gray-5);   /* #FAFAFA — primary text, icons */
-  --fg-muted:   var(--_gray-4);   /* #A0A0A0 — labels, secondary text */
-  --fg-subtle:  var(--_gray-3);   /* #666666 — placeholders, disabled */
+  /* ── Foreground (3 levels + section titles) ── */
+  --fg-default: var(--_gray-5);    /* #FBFBFB — primary text, icons */
+  --fg-muted:   var(--_gray-4);    /* #BFBFC1 — labels, secondary text, amounts */
+  --fg-subtle:  var(--_gray-3);    /* #707076 — meta, timestamps, placeholders */
+  --fg-section: var(--_gray-3b);   /* #8A8A8A — section/accordion titles */
 
   /* ── Border ── */
-  --border:       rgba(255, 255, 255, 0.08);
-  --border-focus: rgba(255, 255, 255, 0.20);
+  --border:       rgba(76, 76, 80, 0.72);    /* absolute cool-gray approach */
+  --border-focus: rgba(112, 112, 118, 0.78); /* stronger for focus states */
 
   /* ── Interactive hover / selection ── */
   --bg-hover:    rgba(255, 255, 255, 0.04);
@@ -82,15 +97,17 @@
 [data-theme="light"] {
 
   /* ── Surfaces ── */
-  --surface-page:    #FFFFFF;
-  --surface-raised:  #F5F5F5;
-  --surface-card:    #EBEBEB;
-  --surface-overlay: #DEDEDE;
+  --surface-page:     #FFFFFF;
+  --surface-raised:   #F5F5F5;
+  --surface-card:     #F5F5F5;   /* same as raised, consistent with dark theme */
+  --surface-overlay:  #DEDEDE;
+  --surface-elevated: #D0D0D0;   /* hover/drag-over states */
 
   /* ── Foreground ── */
-  --fg-default: var(--_gray-0);   /* #0A0A0A — inverted from dark */
+  --fg-default: var(--_gray-0);   /* #0B0B0E — inverted from dark */
   --fg-muted:   #555555;
   --fg-subtle:  #999999;
+  --fg-section: #777777;          /* section/accordion titles */
 
   /* ── Border ── */
   --border:       rgba(0, 0, 0, 0.09);
@@ -132,17 +149,17 @@
   --label-indigo: var(--_indigo);      /* #6466E9 — for tags, labels, categories */
 
   /* Status */
-  --color-success:        var(--_green);               /* #66DC7E */
-  --color-success-bg:     rgba(102, 220, 126, 0.12);
-  --color-success-border: rgba(102, 220, 126, 0.28);
+  --color-success:        var(--_green);               /* #62B762 */
+  --color-success-bg:     rgba(98, 183, 98, 0.12);
+  --color-success-border: rgba(98, 183, 98, 0.28);
 
-  --color-warning:        var(--_amber);               /* #DAB33C */
-  --color-warning-bg:     rgba(218, 179, 60, 0.12);
-  --color-warning-border: rgba(218, 179, 60, 0.28);
+  --color-warning:        var(--_amber);               /* #FFC154 */
+  --color-warning-bg:     rgba(255, 193, 84, 0.12);
+  --color-warning-border: rgba(255, 193, 84, 0.28);
 
-  --color-error:          var(--_red);                 /* #E64341 */
-  --color-error-bg:       rgba(230, 67, 65, 0.12);
-  --color-error-border:   rgba(230, 67, 65, 0.28);
+  --color-error:          var(--_red);                 /* #ED4B39 */
+  --color-error-bg:       rgba(237, 75, 57, 0.12);
+  --color-error-border:   rgba(237, 75, 57, 0.28);
 
   --color-info:           var(--_blue-action);         /* #447DF7 */
   --color-info-bg:        rgba(68, 125, 247, 0.12);
