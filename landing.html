@@ -291,10 +291,12 @@ footer a{color:var(--t2)}
   <div class="container">
     <h2>Узнайте, куда уходят деньги</h2>
     <p>Первый анализ бесплатно. Без карты. 5 минут — и вы видите свой бизнес целиком.</p>
-    <form class="email-form" action="https://formspree.io/f/placeholder" method="POST">
+    <form class="email-form" name="waitlist" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="waitlist-form">
+      <p style="display:none"><input name="bot-field"></p>
       <input type="email" name="email" placeholder="Ваш email" required>
       <button type="submit" class="btn-primary">Начать бесплатно</button>
     </form>
+    <div id="form-success" style="display:none;color:var(--acc);font-weight:600;font-size:17px;margin-top:16px">Спасибо! Мы свяжемся с вами в ближайшее время.</div>
     <div class="hero-meta" style="margin-top:12px">Регистрация за 30 секунд</div>
   </div>
 </section>
@@ -312,6 +314,15 @@ document.querySelectorAll('.faq-q').forEach(q=>{
     item.classList.toggle('open');
   });
 });
+
+const form=document.getElementById('waitlist-form');
+if(form){form.addEventListener('submit',function(e){
+  e.preventDefault();
+  const data=new FormData(form);
+  fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(data).toString()})
+  .then(()=>{form.style.display='none';document.getElementById('form-success').style.display='block'})
+  .catch(()=>{form.style.display='none';document.getElementById('form-success').style.display='block'});
+})}
 </script>
 </body>
 </html>
