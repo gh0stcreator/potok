@@ -11,7 +11,7 @@
   --t1:#FBFBFB;--t2:#BFBFC1;--t3:#707076;
   --top-value:#FBFBFB;--top-label:#BFBFC1;--top-meta:#707076;
   --side-title:#8A8A8A;--side-text:#FBFBFB;--side-meta:#707076;
-  --logo:#BCBCBC;
+  --logo:#FBFBFB;
   --line:#4C4C50;--step:#707076;--acc-soft:#20208B;
   --checkBg:#242426;
   --market1:#202226;--market2:#24262A;--market3:#2B2E33;--market-text:#BFBFC1;--market-border:#323235;
@@ -86,8 +86,8 @@ body.aside-collapsed .sb-reopen{display:flex}
 .gear-btn.hid{visibility:hidden;opacity:0;pointer-events:none}
 
 /* ── GROUPS ── */
-.grp{margin-bottom:1px}
-.grp-hd{display:flex;align-items:center;gap:5px;padding:5px 4px;cursor:pointer;user-select:none;border-radius:var(--rad);transition:background .1s}
+.grp{margin-bottom:4px}
+.grp-hd{display:flex;align-items:center;gap:5px;padding:7px 4px;cursor:pointer;user-select:none;border-radius:var(--rad);transition:background .1s}
 .grp-hd:hover{background:var(--s3)}
 .grp-hd.dov{background:var(--s4);outline:.5px dashed var(--b3);outline-offset:-2px}
 .drag-h{font-size:10px;color:var(--t3);flex-shrink:0;cursor:grab}
@@ -103,7 +103,7 @@ body.aside-collapsed .sb-reopen{display:flex}
 .grp-body.cl{display:none}
 
 /* ── CHANNEL CARD ── */
-.ch-hd{display:flex;align-items:center;gap:5px;padding:4px;border-radius:var(--rad);cursor:pointer;transition:background .1s}
+.ch-hd{display:flex;align-items:center;gap:5px;padding:6px 4px;border-radius:var(--rad);cursor:pointer;transition:background .1s}
 .ch-hd:hover{background:var(--s3)}
 .ch-dot-pick{width:12px;height:12px;border:none;padding:0;background:transparent;cursor:pointer;flex-shrink:0;border-radius:50%;overflow:hidden;box-shadow:0 0 0 1px rgba(255,255,255,.06)}
 .ch-dot-pick::-webkit-color-swatch-wrapper{padding:0}
@@ -415,13 +415,13 @@ const THEME_DEFAULTS={
   t1:'#BDBDBF',
   t2:'#6A6A6E',
   t3:'#59595C',
-  topValue:'#BDBDBF',
+  topValue:'#FBFBFB',
   topLabel:'#6A6A6E',
   topMeta:'#59595C',
   sideTitle:'#8A8A8A',
   sideText:'#BDBDBF',
   sideMeta:'#6A6A6E',
-  logo:'#BCBCBC',
+  logo:'#FBFBFB',
   checkBg:'#1A1A1A',
   line:'#FFFFFF',
   step:'#6A6A6E',
