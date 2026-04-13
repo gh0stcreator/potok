@@ -2017,6 +2017,7 @@ function renameCh(chId,name){
 
 function addChannel(grpId){
   const name=window.prompt('Название канала:');if(!name||!name.trim())return;
+  const id='ch_'+Date.now();
   const colorIdx=_pi++%palDraft.length;
   CH[id]={id,name:name.trim(),defS:0,defR:0,grpId,media:false,colorIdx,color:palDraft[colorIdx]};
   const g=grpDefs.find(x=>x.id===grpId);if(g)g.chs.push({id,name:name.trim(),defS:0,defR:0});
